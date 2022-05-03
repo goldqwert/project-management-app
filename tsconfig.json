@@ -4,7 +4,8 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "ES2015", "es5", "es6"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -17,9 +18,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react"
   },
+  "files": ["src/index.tsx", "modules.d.ts"
+  ],
   "include": [
     "src"
   ]
