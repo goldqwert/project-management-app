@@ -1,0 +1,20 @@
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.welcome-header {
+
+}
+.welcome-wrapper {
+  background: #aea4e3;
+  padding: 20px;
+  display: flex;
+  font-size: 1.7rem;
+  line-height: 2rem;
+  color: black;
+  justify-content: flex-end;
+}
+.welcome-wrapper >* {
+  margin-right: 20px;
+}
