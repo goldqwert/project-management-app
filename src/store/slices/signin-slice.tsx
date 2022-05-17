@@ -1,11 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { InitialSignInState } from '../../types/types';
 
-export interface InitialSignInState {
-  login: string;
-  password: string;
-  getLoginData: {};
-  isAuth: boolean;
-}
 const initialState: InitialSignInState = {
   login: "",
   password: "",

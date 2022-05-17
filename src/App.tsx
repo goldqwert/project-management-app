@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Routes, BrowserRouter, Navigate } from 'react-router-dom';
-import WelcomePage from './components/WelcomePage/WelcomePage';
-import MainPage from './components/MainPage/MainPage';
-import Login from './components/Authorization/Login/Login';
-import SignUp from './components/Authorization/SignUp/SignUp';
+import WelcomePage from './WelcomePage/WelcomePage';
+import MainPage from './MainPage/MainPage';
+import Login from './AuthorizationPage/Login/Login';
+import SignUp from './AuthorizationPage/SignUp/SignUp';
 import { RequireAuth } from "./components/hok/RequireAuth";
-import Error from './components/ErrorPage/Error';
+import Error from './ErrorPage/Error';
 import './App.css';
 
 function App() {

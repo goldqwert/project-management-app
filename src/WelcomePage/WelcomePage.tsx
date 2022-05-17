@@ -1,6 +1,6 @@
 import React from "react";
-import Button from '../UI/Button/Button';
-import Footer from '../UI/Footer/Footer';
+import Button from '../components/UI/Button/Button';
+import Footer from '../components/UI/Footer/Footer';
 import { Link } from 'react-router-dom';
 import "./WelcomePage.scss";
 

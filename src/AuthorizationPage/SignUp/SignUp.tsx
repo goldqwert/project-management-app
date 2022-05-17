@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '../../UI/Button/Button';
+import Button from '../../components/UI/Button/Button';
 import { useForm } from "react-hook-form";
-import { RootState } from '../../../store';
-import {getNameData, getLoginData, getPasswordData, getConfirmPasswordData} from "../../../store/slices/signUp-slice";
-import { sendingFormSignUp } from '../../../store/actions/signUp-actions';
+import { RootState } from '../../store';
+import {getNameData, getLoginData, getPasswordData, getConfirmPasswordData} from "../../store/slices/signUp-slice";
+import { sendingFormSignUp } from '../../store/actions/signUp-actions';
 import "./Sign-up.scss";
 import WelcomePage from '../../WelcomePage/WelcomePage';
 

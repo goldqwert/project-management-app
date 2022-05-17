@@ -1,13 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { InitialSignUpState } from '../../types/types';
 
-export interface InitialSignUpState {
-  name?: string;
-  login: string;
-  password: string;
-  confirmPassword?: string;
-  userData?: {},
-  error?: null | string;
-}
 const initialState:InitialSignUpState = {
   name: "",
   login: "",

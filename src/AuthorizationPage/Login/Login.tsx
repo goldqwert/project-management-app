@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import {useNavigate} from "react-router-dom";
-import Button from '../../UI/Button/Button';
-import { RootState } from '../../../store';
-import { sendingSignInData } from '../../../store/actions/signIn-actions';
-import {getLoginForSignIn, getPasswordForSignIn} from "../../../store/slices/signin-slice";
-import {showError} from "../../../store/slices/signUp-slice";
-import {setIsAuth} from "../../../store/slices/signin-slice";
+import Button from '../../components/UI/Button/Button';
+import { RootState } from '../../store';
+import { sendingSignInData } from '../../store/actions/signIn-actions';
+import {getLoginForSignIn, getPasswordForSignIn} from "../../store/slices/signin-slice";
+import {showError} from "../../store/slices/signUp-slice";
+import {setIsAuth} from "../../store/slices/signin-slice";
 import "../SignUp/Sign-up.scss";
 import WelcomePage from '../../WelcomePage/WelcomePage';
 
@@ -23,9 +23,6 @@ const Login = () => {
   const {handleSubmit, formState: {errors}, register, reset } = useForm<LoginState>({mode: "onChange"});
   let formSignInData = {};
 
-  // useEffect(() => {
-  //   dispatch(sendingSignInData(formSignInData))
-  // }, [dispatch, formSignInData]);
 
   console.log(isAuth);
 
