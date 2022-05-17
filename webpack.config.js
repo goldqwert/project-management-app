@@ -49,7 +49,6 @@ const config = {
                 test: /\.s[ac]ss$/i,
                 use: [
                     stylesHandler,
-                    'css-modules-typescript-loader',
                     'css-loader',
                     'sass-loader'],
             },
@@ -60,7 +59,7 @@ const config = {
         ],
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
+        extensions: [".ts", ".tsx", ".js", ".scss"],
     },
 
 };

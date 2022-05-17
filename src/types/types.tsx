@@ -1,7 +1,10 @@
 export interface InitialSignInState {
   login: string;
   password: string;
-  getLoginData: {};
+  getLoginData: {
+    login: string;
+    password: string;
+  };
   isAuth: boolean;
 }
 
@@ -10,6 +13,10 @@ export interface InitialSignUpState {
   login: string;
   password: string;
   confirmPassword?: string;
-  userData?: {},
+  userData?: {
+    id: string;
+    name: string;
+    login: string;
+  };
   error?: null | string;
 }
