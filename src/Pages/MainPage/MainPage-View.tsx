@@ -6,7 +6,6 @@ const MainPageView = () => {
   return (
     <>
       <Header />
-      <div>Hello!</div>
     </>
   );
 };

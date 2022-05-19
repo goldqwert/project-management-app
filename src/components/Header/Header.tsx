@@ -1,24 +1,34 @@
 import React from 'react';
-import Button from '../Button';
+import { Switch, Layout, Menu } from 'antd';
+const { Header } = Layout;
+import './Header.css';
+import { Link } from 'react-router-dom';
 
-
-const Header = () => {
+const HeaderMenu = () => {
+  const onChange = (checked) => {
+    console.log(`switch to ${checked}`);
+  };
+  const signOutClick = () => {};
+  const createBoardClick = () => {};
   return (
-    <header className="header">
-      <div className="header-content">
-        <div className="edit-button">
-          <Button>Edit profile</Button>
-        </div>
-        <div className="out-button">
-          <Button>Sign Out</Button>
-        </div>
-        <div className="board">
-          <Button>Create new board</Button>
-        </div>
-        <div className="select-lang">
-        </div>
-      </div>
-    </header>
+    <Layout>
+      <Header style={{ position: 'sticky', zIndex: 1, width: '100%' }}>
+        <Menu theme="light" mode="horizontal">
+          <Menu.Item key="profile">
+            <Link to="/edit">Edit profile</Link>
+          </Menu.Item>
+          <Menu.Item key="out" onClick={signOutClick}>
+            Sign Out
+          </Menu.Item>
+          <Menu.Item key="board" onClick={createBoardClick}>
+            Create new board
+          </Menu.Item>
+          <Menu.Item key="switch">
+            <Switch defaultChecked onChange={onChange} />
+          </Menu.Item>
+        </Menu>
+      </Header>
+    </Layout>
   );
 };
-export default Header;
+export default HeaderMenu;
