@@ -6,6 +6,8 @@ export interface InitialSignInState {
     password: string;
   };
   isAuth: boolean;
+  token: string | null;
+  error?: null | string;
 }
 
 export interface InitialSignUpState {

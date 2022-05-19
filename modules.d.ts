@@ -9,3 +9,4 @@ declare module 'react-dom';
 declare module 'react-router-dom';
 declare module '*.scss';
 declare module "*.svg";
+declare module 'redux-persist';

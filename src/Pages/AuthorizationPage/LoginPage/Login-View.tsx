@@ -4,7 +4,7 @@ import Button from '../../../components/Button/Button';
 import { getLoginForSignIn, getPasswordForSignIn } from '../../../store/slices/signin-slice';
 import '../SignUpPage/Sign-up.scss';
 
-const LoginView = ({dispatch, handleSubmit, handleFormSubmit, errors, register, error}) => {
+const LoginView = ({ dispatch, handleSubmit, handleFormSubmit, errors, register, error }) => {
   return (
     <>
       <div className="form">
@@ -55,10 +55,11 @@ const LoginView = ({dispatch, handleSubmit, handleFormSubmit, errors, register, 
             {error && <p className="text-invalid">{`${error}`}</p>}
             <Link to="/sign-up">
               <div className="account-settings">
-                <p>Don't have an account yet? Sign Up</p>
+                <p>Do not have an account yet? Sign Up</p>
               </div>
             </Link>
           </div>
+
           <div className="button-send">
             <Button type="submit">Submit</Button>
           </div>

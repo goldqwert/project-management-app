@@ -9,7 +9,15 @@ import {
 } from '../../../store/slices/signUp-slice';
 import './Sign-up.scss';
 
-const SignUpView = ({handleSubmit, handleFormSubmit, errors, register, dispatch, watch, error }) => {
+const SignUpView = ({
+  handleSubmit,
+  handleFormSubmit,
+  errors,
+  register,
+  dispatch,
+  watch,
+  error,
+}) => {
   return (
     <>
       <div className="form">
@@ -79,12 +87,12 @@ const SignUpView = ({handleSubmit, handleFormSubmit, errors, register, dispatch,
             {errors?.password && (
               <p className="text-invalid">{`${errors?.password.message || 'Error'}`}</p>
             )}
-            <label htmlFor="confirmPassword">Confirm password</label>
+            <label htmlFor="confirm-password">Confirm password</label>
             <input
-              name="confirmPassword"
+              name="confirm-password"
               placeholder="Confirm password"
               type="password"
-              id="confirmPassword"
+              id="confirm-password"
               className={`${errors?.confirmPassword ? 'input error-input' : 'input'}`}
               {...register('confirmPassword', {
                 onChange: (e) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import ErrorView from './Error-View';
 
 const ErrorContainer = () => {
@@ -7,7 +7,7 @@ const ErrorContainer = () => {
   const handleClick = () => {
     navigate('/', { replace: true });
   };
-  return <ErrorView handleClick={handleClick}/>
-}
+  return <ErrorView handleClick={handleClick} />;
+};
 
 export default ErrorContainer;

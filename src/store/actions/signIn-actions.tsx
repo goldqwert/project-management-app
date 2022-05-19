@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { showError } from '../slices/signUp-slice';
+import { getCookie, setCookie } from 'typescript-cookie';
+import { setIsAuth, getToken, showError } from '../slices/signin-slice';
 
 export const sendingSignInData = (signInData) => {
   return async (dispatch) => {
+    dispatch(showError(null));
     const sendRequestSignIn = async () => {
-      console.log('EXECUTION');
-
       const options = {
         headers: {
           'Content-Type': 'application/json',
@@ -23,8 +23,9 @@ export const sendingSignInData = (signInData) => {
       }
 
       const token = response.data.token;
-      localStorage.setItem('jwtToken', token);
-      console.log(response, signInData, token);
+      setCookie('jwt', token, { expires: 1 });
+      dispatch(setIsAuth(true));
+      dispatch(getToken(getCookie('jwt')));
       return token;
     };
     try {

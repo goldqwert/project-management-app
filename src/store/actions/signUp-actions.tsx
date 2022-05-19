@@ -1,9 +1,12 @@
 import axios from 'axios';
 import { showError } from '../slices/signUp-slice';
 import { getUserData } from '../slices/signUp-slice';
+import { setCookie } from 'typescript-cookie';
+export let savedData;
 
 export const sendingFormSignUp = (signUpData) => {
   return async (dispatch) => {
+    dispatch(showError(null));
     const sendRequest = async () => {
       const options = {
         headers: {
@@ -24,14 +27,14 @@ export const sendingFormSignUp = (signUpData) => {
       }
       // data хранит {id, login, name}
       const data = await response.data;
-      console.log(data);
+      savedData = setCookie('id', data.id, { expires: 1 });
       return data;
     };
     try {
       const allData = await sendRequest();
       dispatch(getUserData(allData));
     } catch (error) {
-      dispatch(showError('User login already exists!'));
+      dispatch(showError('Something went wrong!'));
     }
   };
 };

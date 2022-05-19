@@ -5,10 +5,12 @@ const initialState: InitialSignInState = {
   login: '',
   password: '',
   getLoginData: {
-    login: "",
-    password: ""
+    login: '',
+    password: '',
   },
   isAuth: false,
+  token: '',
+  error: null,
 };
 
 const signInData = createSlice({
@@ -27,9 +29,21 @@ const signInData = createSlice({
     setIsAuth(state, action) {
       state.isAuth = action.payload;
     },
+    getToken(state, action) {
+      state.token = action.payload;
+    },
+    showError(state, action) {
+      state.error = action.payload;
+    },
   },
 });
-export const { getLoginForSignIn, getPasswordForSignIn, getLoginDataFromUser, setIsAuth } =
-  signInData.actions;
+export const {
+  getLoginForSignIn,
+  getPasswordForSignIn,
+  getLoginDataFromUser,
+  setIsAuth,
+  getToken,
+  showError,
+} = signInData.actions;
 
 export default signInData.reducer;

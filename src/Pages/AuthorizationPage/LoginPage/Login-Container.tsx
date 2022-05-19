@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import LoginView from './Login-View';
 import React from 'react';
 import { sendingSignInData } from '../../../store/actions/signIn-actions';
-import { setIsAuth } from '../../../store/slices/signin-slice';
 import { showError } from '../../../store/slices/signUp-slice';
 import { useForm } from 'react-hook-form';
 import { LoginState } from './Login-Types';
@@ -17,9 +16,8 @@ const LoginContainer = () => {
     login: loginForSignUp,
     password: passwordForSignUp,
     error,
-    userData,
   } = useSelector((state: RootState) => state.signUp);
-  const { login, password, isAuth } = useSelector((state: RootState) => state.signIn);
+  const { login, password } = useSelector((state: RootState) => state.signIn);
 
   const {
     handleSubmit,
@@ -37,14 +35,22 @@ const LoginContainer = () => {
         password,
       };
       dispatch(sendingSignInData(formSignInData));
-      dispatch(setIsAuth(true));
+      navigate('/main');
     } else {
       dispatch(showError('Password and login are incorrect!Try again!'));
+      navigate('/', { replace: true });
       return;
     }
-    console.log(formSignInData, userData);
-    navigate('/main', { replace: true });
   };
-  return <LoginView dispatch={dispatch} error={error} errors={errors} handleFormSubmit={handleFormSubmit} handleSubmit={handleSubmit} register={register} />
-}
+  return (
+    <LoginView
+      dispatch={dispatch}
+      error={error}
+      errors={errors}
+      handleFormSubmit={handleFormSubmit}
+      handleSubmit={handleSubmit}
+      register={register}
+    />
+  );
+};
 export default LoginContainer;

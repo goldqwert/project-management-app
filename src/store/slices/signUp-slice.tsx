@@ -7,9 +7,9 @@ const initialState: InitialSignUpState = {
   password: '',
   confirmPassword: '',
   userData: {
-    id: "",
-    name: "",
-    login: ""
+    id: '',
+    name: '',
+    login: '',
   },
   error: null,
 };

@@ -1,8 +1,7 @@
 import React from 'react';
 import Button from '../../components/Button/Button';
 
-const ErrorView = ({handleClick}) => {
-
+const ErrorView = ({ handleClick }) => {
   return (
     <>
       <div className="error-content">

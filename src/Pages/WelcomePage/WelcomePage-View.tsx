@@ -4,13 +4,15 @@ import Footer from '../../components/Footer/index';
 import { Link } from 'react-router-dom';
 import './WelcomePage.scss';
 
-const WelcomeView = ({isLoggedIn}) => {
+const WelcomeView = ({ isLogged }) => {
   return (
     <div className=" wrapper">
       <header className="welcome-header">
         <div className="welcome-wrapper">
-          {isLoggedIn ? (
-            <Button className="button-goto">Go To Main Page</Button>
+          {isLogged ? (
+            <Link to="/main">
+              <Button className="button-goto">Go To Main Page</Button>
+            </Link>
           ) : (
             <div className="welcome-wrapper">
               <div className="button__log">

@@ -3,7 +3,7 @@ import SignUpView from './SignUp-View';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { sendingFormSignUp } from '../../../store/actions/signUp-actions';
 import { FormState } from './SignUp-Types';
 
@@ -19,7 +19,6 @@ const SignUpContainer = () => {
   } = useForm<FormState>({ mode: 'onChange' });
   const navigate = useNavigate();
   const goToLogin = () => navigate('/login');
-  const goBack = () => navigate('/sign-up', { replace: true });
 
   const handleFormSubmit = () => {
     reset();
@@ -29,16 +28,19 @@ const SignUpContainer = () => {
       password,
     };
     dispatch(sendingFormSignUp(formData));
-    error ? goBack() : goToLogin();
+    goToLogin();
   };
 
-  return <SignUpView
-    handleSubmit={handleSubmit}
-    handleFormSubmit={handleFormSubmit}
-    register={register}
-    errors={errors} error={error}
-    watch={watch}
-    dispatch={dispatch}
-  />
-}
+  return (
+    <SignUpView
+      handleSubmit={handleSubmit}
+      handleFormSubmit={handleFormSubmit}
+      register={register}
+      errors={errors}
+      error={error}
+      watch={watch}
+      dispatch={dispatch}
+    />
+  );
+};
 export default SignUpContainer;
