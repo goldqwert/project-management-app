@@ -6,7 +6,6 @@ import '../SignUpPage/Sign-up.scss';
 
 const LoginView = ({ dispatch, handleSubmit, handleFormSubmit, errors, register, error }) => {
   return (
-    <>
       <div className="form">
         <h3>Login to account</h3>
         <form className="form-profile" onSubmit={handleSubmit(handleFormSubmit)}>
@@ -65,7 +64,6 @@ const LoginView = ({ dispatch, handleSubmit, handleFormSubmit, errors, register,
           </div>
         </form>
       </div>
-    </>
   );
 };
 export default LoginView;

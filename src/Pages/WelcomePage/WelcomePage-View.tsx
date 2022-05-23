@@ -6,7 +6,7 @@ import './WelcomePage.scss';
 
 const WelcomeView = ({ isLogged }) => {
   return (
-    <div className=" wrapper">
+    <div className="wrapper">
       <header className="welcome-header">
         <div className="welcome-wrapper">
           {isLogged ? (

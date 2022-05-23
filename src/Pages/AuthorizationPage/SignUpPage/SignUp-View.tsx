@@ -19,7 +19,6 @@ const SignUpView = ({
   error,
 }) => {
   return (
-    <>
       <div className="form">
         <h3>Sign Up to create an account</h3>
         <form className="form-profile" onSubmit={handleSubmit(handleFormSubmit)}>
@@ -121,7 +120,6 @@ const SignUpView = ({
           {error && <p>{`${error}`}</p>}
         </form>
       </div>
-    </>
   );
 };
 export default SignUpView;

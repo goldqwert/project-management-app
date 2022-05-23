@@ -1,7 +1,6 @@
 import React from 'react';
 import { Switch, Layout, Menu } from 'antd';
 const { Header } = Layout;
-import './Header.css';
 import { Link } from 'react-router-dom';
 
 const HeaderMenu = () => {
