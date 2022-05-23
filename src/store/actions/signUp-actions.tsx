@@ -16,7 +16,7 @@ export const sendingFormSignUp = (signUpData) => {
         },
       };
       const response = await axios.post(
-        'https://thawing-anchorage-15805.herokuapp.com/signup',
+        'https://fathomless-savannah-49484.herokuapp.com/signup',
         signUpData,
         options
       );
