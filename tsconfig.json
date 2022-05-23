@@ -9,9 +9,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
@@ -21,8 +19,7 @@
     "jsx": "react",
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
-  "files": ["src/index.tsx", "modules.d.ts"
-  ],
+  "files": ["src/index.tsx", "modules.d.ts"],
   "include": [
     "src"
   ]

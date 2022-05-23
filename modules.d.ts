@@ -6,6 +6,7 @@ declare module 'redux-promise';
 declare module 'react';
 declare module 'react-redux';
 declare module 'react-dom';
-declare module 'socket.io-client';
 declare module 'react-router-dom';
 declare module '*.scss';
+declare module "*.svg";
+declare module 'redux-persist';
