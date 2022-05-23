@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Switch, Layout, Menu } from 'antd';
 const { Header } = Layout;
-import { Link } from 'react-router-dom';
 
 const HeaderMenu = () => {
   const onChange = (checked) => {
@@ -9,8 +9,10 @@ const HeaderMenu = () => {
   };
   const signOutClick = () => {};
   const createBoardClick = () => {};
+
   return (
-    <Layout>
+
+    <Layout >
       <Header style={{ position: 'sticky', zIndex: 1, width: '100%' }}>
         <Menu theme="light" mode="horizontal">
           <Menu.Item key="profile">

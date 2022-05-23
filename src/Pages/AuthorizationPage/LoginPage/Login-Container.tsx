@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../store';
+import store, { RootState } from '../../../store';
 import LoginView from './Login-View';
 import React from 'react';
 import { sendingSignInData } from '../../../store/actions/signIn-actions';
 import { showError } from '../../../store/slices/signUp-slice';
 import { useForm } from 'react-hook-form';
 import { LoginState } from './Login-Types';
+export const dispatchStore = store.dispatch;
 
 const LoginContainer = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const LoginContainer = () => {
         login,
         password,
       };
-      dispatch(sendingSignInData(formSignInData));
+      dispatchStore(sendingSignInData(formSignInData));
       navigate('/main');
     } else {
       dispatch(showError('Password and login are incorrect!Try again!'));
