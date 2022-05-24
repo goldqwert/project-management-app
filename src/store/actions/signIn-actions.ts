@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getCookie, setCookie } from 'typescript-cookie';
 import { setIsAuth, getToken, showError } from '../slices/signin-slice';
+import { getTokenFromCookie } from '../../common/helper';
 
 export const sendingSignInData = (signInData) => {
   return async (dispatch) => {
@@ -9,7 +10,7 @@ export const sendingSignInData = (signInData) => {
       const options = {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'JWT token',
+           Authorization: `Bearer ${getTokenFromCookie()}`,
           'Access-Control-Allow-Origin': '*',
         },
       };
@@ -31,7 +32,7 @@ export const sendingSignInData = (signInData) => {
     try {
       await sendRequestSignIn();
     } catch (error) {
-      dispatch(showError('Something went wrong!'));
+      dispatch(showError('User login already exists!"'));
     }
   };
 };

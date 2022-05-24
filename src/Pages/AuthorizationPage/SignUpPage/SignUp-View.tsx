@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../../components/Button/Button';
+import { Button } from 'antd';
 import {
   getNameData,
   getLoginData,
@@ -115,9 +115,9 @@ const SignUpView = ({
             </Link>
           </div>
           <div className="button-send">
-            <Button type="submit">Submit</Button>
+            <Button type="primary" htmlType='submit'>Submit</Button>
           </div>
-          {error && <p>{`${error}`}</p>}
+          {error && <p className="text-invalid">{`${error}`}</p>}
         </form>
       </div>
   );

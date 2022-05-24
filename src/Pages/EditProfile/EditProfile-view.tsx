@@ -1,13 +1,18 @@
 import * as React from "react";
 import { Form, Input, Button } from 'antd';
-export const dispatchStore = store.dispatch;
-import {editUser} from "../../store/slices/edit-slice";
-import store from '../../store';
+import {editUserName, editUserLogin, editUserPassword } from "../../store/slices/edit-slice";
+import Modal from '../../components/Modal/Modal';
 import "./Edit.scss";
 
-
-const EditProfileView = ({dispatch, onFinish, onFinishFailed }) => {
+const EditProfileView = ({dispatch, onFinish, deleteClickHandler, modalHandler, showModal, deleteUserModalHandler }) => {
   return (
+    <>
+      {showModal && (<Modal
+        title={"Do you really want to delete your account?"}
+        onConfirm={modalHandler}
+        onCancel={modalHandler}
+        onSubmit={deleteUserModalHandler}
+      />)}
     <div className="edit-profile">
       <h3>Edit profile</h3>
     <Form
@@ -16,28 +21,37 @@ const EditProfileView = ({dispatch, onFinish, onFinishFailed }) => {
       wrapperCol={{ span: 16 }}
       initialValues={{ remember: true }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item
-        label="Current Login"
-        name="login"
-        rules={[{ required: true, message: 'Please input your login!' }]}
+        label="New Name"
+        name="new-name"
+        rules={[{ required: true, message: 'Please input your new name!' }]}
       >
-        <Input />
+        <Input
+        onChange={(e) =>{dispatch(editUserName(e.target.value))}}/>
       </Form.Item>
 
       <Form.Item
         label="New Login"
         name="new-login"
         rules={[{ required: true, message: 'Please input your new login!' }]}
-        onMetaChange:(e) =>{dispatch(editUser(e.target.value))}
       >
-        <Input />
+        <Input
+          onChange={(e) =>{dispatch(editUserLogin(e.target.value))}}/>
+      </Form.Item>
+
+      <Form.Item
+        label="New Password"
+        name="new-password"
+        rules={[{ required: true, message: 'Please input your new password!' }]}
+      >
+        <Input
+          onChange={(e) =>{dispatch(editUserPassword(e.target.value))}}/>
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="button">
+        <Button type="primary" htmlType="button" onClick={deleteClickHandler}>
           Delete account
         </Button>
       </Form.Item>
@@ -49,6 +63,7 @@ const EditProfileView = ({dispatch, onFinish, onFinishFailed }) => {
       </Form.Item>
     </Form>
       </div>
+      </>
   );
 };
 

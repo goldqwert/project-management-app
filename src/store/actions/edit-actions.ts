@@ -1,5 +1,6 @@
 import axios from "axios";
 import {showError} from "../slices/edit-slice";
+import { getTokenFromCookie } from '../../common/helper';
 
 export const editProfileData = (editData, userId) => {
   return async (dispatch) => {
@@ -8,8 +9,8 @@ export const editProfileData = (editData, userId) => {
       const options = {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'JWT token',
           'Access-Control-Allow-Origin': '*',
+           Authorization: `Bearer ${getTokenFromCookie()}`,
         },
       };
       const response = await axios.put(`https://fathomless-savannah-49484.herokuapp.com/users/${userId}`, editData, options);

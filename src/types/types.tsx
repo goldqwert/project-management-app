@@ -1,3 +1,9 @@
+import store from '../store';
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export const dispatchStore = store.dispatch;
+
 export interface InitialSignInState {
   login: string;
   password: string;

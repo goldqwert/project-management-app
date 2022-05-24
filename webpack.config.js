@@ -49,6 +49,7 @@ const config = {
                 test: /\.s[ac]ss$/i,
                 use: [
                     stylesHandler,
+                    'css-modules-typescript-loader',
                     'css-loader',
                     'sass-loader'],
             },

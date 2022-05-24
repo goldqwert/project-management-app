@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../../../components/Button/Button';
+import { Button } from 'antd';
 import { getLoginForSignIn, getPasswordForSignIn } from '../../../store/slices/signin-slice';
 import '../SignUpPage/Sign-up.scss';
 
@@ -60,7 +60,7 @@ const LoginView = ({ dispatch, handleSubmit, handleFormSubmit, errors, register,
           </div>
 
           <div className="button-send">
-            <Button type="submit">Submit</Button>
+            <Button type="primary" htmlType="submit">Submit</Button>
           </div>
         </form>
       </div>
