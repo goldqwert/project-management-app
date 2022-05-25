@@ -17,7 +17,6 @@
     "axios": "^0.26.1",
     "jwt-decode": "^3.1.2",
     "react": "^18.1.0",
-    "react-beautiful-dnd": "^13.1.0",
     "react-cookie": "^4.1.1",
     "react-dnd": "^16.0.1",
     "react-dom": "^18.1.0",
@@ -62,7 +61,6 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.9",
-    "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-router-dom": "^5.1.8",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
