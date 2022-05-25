@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SignUpView from './SignUp-View';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../store';
+import {dispatchStore, RootState} from '../../../types/types';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { sendingFormSignUp } from '../../../store/actions/signUp-actions';
 import { FormState } from './SignUp-Types';
 
+
 const SignUpContainer = () => {
   const { name, login, password, error } = useSelector((state: RootState) => state.signUp);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const goToLogin = () => navigate('/login');
+
   const {
     register,
     handleSubmit,
@@ -17,8 +21,7 @@ const SignUpContainer = () => {
     reset,
     watch,
   } = useForm<FormState>({ mode: 'onChange' });
-  const navigate = useNavigate();
-  const goToLogin = () => navigate('/login');
+
 
   const handleFormSubmit = () => {
     reset();
@@ -27,7 +30,7 @@ const SignUpContainer = () => {
       login,
       password,
     };
-    dispatch(sendingFormSignUp(formData));
+    dispatchStore(sendingFormSignUp(formData));
     goToLogin();
   };
 

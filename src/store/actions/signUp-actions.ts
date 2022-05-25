@@ -11,7 +11,6 @@ export const sendingFormSignUp = (signUpData) => {
       const options = {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'JWT token',
           'Access-Control-Allow-Origin': '*',
         },
       };
@@ -23,7 +22,7 @@ export const sendingFormSignUp = (signUpData) => {
 
       console.log(response, signUpData);
       if (!response) {
-        throw new Error(`${response.data}`);
+        throw new Error(`${response.data.message}`);
       }
       // data хранит {id, login, name}
       const data = await response.data;

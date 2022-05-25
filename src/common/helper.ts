@@ -1,2 +1,6 @@
 //TO DO FUNCTION getTokenFromCookie
-export const getTokenFromCookie = () => {};
+import { getCookie } from 'typescript-cookie';
+
+export const getTokenFromCookie = () => {
+  return getCookie("jwt");
+};

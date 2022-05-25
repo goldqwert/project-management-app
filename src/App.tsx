@@ -6,6 +6,7 @@ import Login from './Pages/AuthorizationPage/LoginPage/index';
 import SignUp from './Pages/AuthorizationPage/SignUpPage/index';
 import { RequireAuth } from './components/hok/RequireAuth';
 import Error from './Pages/ErrorPage/index';
+import EditProfile from './Pages/EditProfile';
 import './App.css';
 
 function App() {
@@ -23,7 +24,8 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route to="/error" element={<Error />} />
+        <Route path="/edit" element={<EditProfile />}/>
+        <Route path="/error" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );

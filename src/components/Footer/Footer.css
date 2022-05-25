@@ -1,0 +1,31 @@
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.link a {
+  text-decoration: none;
+  margin-left: 5px;
+  color: black;
+}
+
+a:hover {
+  transform: scale(1.1);
+}
+
+.footer {
+  margin-top: 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px 10px 50px;
+  color: black;
+  font-size: 1.5rem;
+  background: #aea4e3;
+  border-radius: 9px;
+}
+
+/*# sourceMappingURL=Footer.css.map */
