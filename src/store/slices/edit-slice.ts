@@ -1,19 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface EditState {
-  name: string,
+  name: string;
   login: string;
   password: string;
   error: null | string;
 }
 const initialState: EditState = {
-  name: "",
-  login: "",
-  password: "",
+  name: '',
+  login: '',
+  password: '',
   error: null,
-}
+};
 const editSlice = createSlice({
-  name: "edit",
+  name: 'edit',
   initialState,
   reducers: {
     editUserName(state, action) {
@@ -28,8 +28,9 @@ const editSlice = createSlice({
     showError(state, action) {
       state.error = action.payload;
     },
-  }
+  },
 });
 
-export const {editUserName, showError, editUserLogin, editUserPassword} = editSlice.actions;
+export const { editUserName, showError, editUserLogin, editUserPassword } =
+  editSlice.actions;
 export default editSlice.reducer;

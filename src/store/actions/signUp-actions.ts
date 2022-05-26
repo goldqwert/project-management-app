@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { showError } from '../slices/signUp-slice';
-import { getUserData } from '../slices/signUp-slice';
 import { setCookie } from 'typescript-cookie';
+import { showError, getUserData } from '../slices/signUp-slice';
+
 export let savedData;
 
 export const sendingFormSignUp = (signUpData) => {
@@ -17,7 +17,7 @@ export const sendingFormSignUp = (signUpData) => {
       const response = await axios.post(
         'https://fathomless-savannah-49484.herokuapp.com/signup',
         signUpData,
-        options
+        options,
       );
 
       console.log(response, signUpData);

@@ -1,47 +1,60 @@
 {
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "ignorePatterns": ["../**/*.js"],
+  "plugins": ["@typescript-eslint", "react-hooks"],
   "extends": [
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:react-hooks/recommended",
+    "airbnb-base",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["@typescript-eslint", "react", "prettier", "react-hooks"],
-  "parserOptions": {
-    "ecmaVersion": 11,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+  "env": {
+    "browser": true,
+    "node": true
   },
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
+    "max-len": ["error", { "code": 120 }],
+    "prefer-template": "off",
+    "import/prefer-default-export": "off",
+    "arrow-body-style": "off",
+    "react-hooks/rules-of-hooks": "off",
     "react-hooks/exhaustive-deps": "warn",
-    "comma-dangle": ["error", "only-multiline"],
     "react/prop-types": "off",
-    "react/display-name": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "@typescript-eslint/interface-name-prefix": "off",
-    "@typescript-eslint/ban-ts-ignore": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "no-unused-vars": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "no-undef": "off",
+    "no-use-before-define": "off",
+    "import/no-extraneous-dependencies": "off",
+    "no-console":"off",
+    "@typescript-eslint/no-unused-vars":"off",
+    "@typescript-eslint/no-non-null-assertion":"off",
+    "default-param-last": "off",
+    "no-param-reassign": "off",
+    " @typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-empty-function": "off",
+    "global-require": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-var-reqiures": "off",
-    "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "consistent-return": "off",
+    "import/no-mutable-exports": "off",
+    "no-unused-expressions": "off"
   },
   "settings": {
     "react": {
       "pragma": "React",
       "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+
+      }
     }
-  },
-  "env": {
-    "browser": true,
-    "es6": true,
-    "jest": true
-  },
-  "root": true
+  }
 }

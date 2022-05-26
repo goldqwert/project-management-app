@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
+
 export interface LogoutState {
   userData: {
     // login: string;
@@ -17,7 +18,7 @@ const logout = createSlice({
   initialState,
   reducers: {
     clearUserData() {
-     // state.userData = action.payload;
+      // state.userData = action.payload;
       storage.removeItem('persist:root');
       // в dispatch прописать storage.removeItem('persist:root')
     },
