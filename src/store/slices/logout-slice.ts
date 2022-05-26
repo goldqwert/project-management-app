@@ -1,11 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
+import { removeCookie } from 'typescript-cookie';
 export interface LogoutState {
   userData: {
-    // login: string;
-    // password: string;
-    // name: string;
-    // id: string;
   };
 }
 
@@ -17,8 +14,8 @@ const logout = createSlice({
   initialState,
   reducers: {
     clearUserData() {
-     // state.userData = action.payload;
-      storage.removeItem('persist:root');
+      removeCookie("id");
+      removeCookie("jwt");
       // в dispatch прописать storage.removeItem('persist:root')
     },
   },

@@ -11,8 +11,12 @@ const WelcomeView = ({ isLogged, signOutClick }) => {
         <div className="welcome-wrapper">
           {isLogged ? (
             <Link to="/main">
-              <Button type="primary" className="btn-go">Go To Main Page</Button>
-              <Button type="primary" onClick={signOutClick}>Sign Out</Button>
+              <Button type="primary" className="btn-go">
+                Go To Main Page
+              </Button>
+              <Button type="primary" onClick={signOutClick}>
+                Sign Out
+              </Button>
             </Link>
           ) : (
             <div className="welcome-wrapper">
