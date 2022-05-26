@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SignUpView from './SignUp-View';
 import { useDispatch, useSelector } from 'react-redux';
-import {dispatchStore, RootState} from '../../../types/types';
+import { dispatchStore, RootState } from '../../../types/types';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { sendingFormSignUp } from '../../../store/actions/signUp-actions';
 import { FormState } from './SignUp-Types';
-
 
 const SignUpContainer = () => {
   const { name, login, password, error } = useSelector((state: RootState) => state.signUp);
@@ -21,7 +20,6 @@ const SignUpContainer = () => {
     reset,
     watch,
   } = useForm<FormState>({ mode: 'onChange' });
-
 
   const handleFormSubmit = () => {
     reset();
