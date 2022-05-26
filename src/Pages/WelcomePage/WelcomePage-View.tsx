@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'antd';
-import Footer from '../../components/Footer/index';
+import Footer from '../../components/footer/index';
 import { Link } from 'react-router-dom';
 import './WelcomePage.scss';
 
