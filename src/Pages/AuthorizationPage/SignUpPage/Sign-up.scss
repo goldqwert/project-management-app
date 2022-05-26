@@ -1,4 +1,3 @@
-
 .form {
   max-width: 1200px;
   margin: 0 auto;
@@ -10,8 +9,8 @@
   text-align: center;
 }
 .form-content {
-  background: #FFFFFF;
-  border: 1px solid #F3F3F3;
+  background: #ffffff;
+  border: 1px solid #f3f3f3;
   border-radius: 8px;
   margin-top: 16px;
   padding: 20px 6px 20px 12px;
@@ -34,29 +33,29 @@
   }
 }
 
- .input {
-    margin-top: 3px;
-    width: 211px;
-    height: 27px;
-    background: #FFFFFF;
-    border: 1px solid #D8D8D8;
-    border-radius: 5px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.3rem;
-    line-height: 1.2rem;
-    color: #000000;
-    &.error-input {
-     border: 2px solid red;
-   }
+.input {
+  margin-top: 3px;
+  width: 211px;
+  height: 27px;
+  background: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-radius: 5px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 1.2rem;
+  color: #000000;
+  &.error-input {
+    border: 2px solid red;
   }
-
-.input:focus {
-  outline: 2px solid #4B51EF;
 }
 
-.text-invalid  {
-  color:red;
+.input:focus {
+  outline: 2px solid #4b51ef;
+}
+
+.text-invalid {
+  color: red;
   font-size: 1.2rem;
 }
 .form-disabled {

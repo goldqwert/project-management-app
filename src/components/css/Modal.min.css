@@ -1,0 +1,2 @@
+.backdrop{position:fixed;top:0;left:0;width:100%;height:100vh;z-index:10;background:rgba(0,0,0,0.75)}.modal{position:fixed;top:30vh;left:10%;width:80%;z-index:100;border-radius:10px;overflow:hidden;background:white}.header{background:#aea4e3;padding:1rem}.header h2{margin:0;color:white}.actions{padding:1rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.actions>*{margin-left:20px}@media (min-width: 768px){.modal{left:calc(50% - 20rem);width:40rem}}
+/*# sourceMappingURL=Modal.min.css.map */

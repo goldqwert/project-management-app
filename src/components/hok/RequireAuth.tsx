@@ -1,12 +1,10 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../types/types';
 import { getCookie } from 'typescript-cookie';
 
-const RequireAuth = ({ children }) => {
-  //const token = useSelector((state: RootState) => state.signIn.token);
-  const token = getCookie("id");
+const RequireAuth = ({ children }: any) => {
+  const token = getCookie('id');
+
   return !token ? <Navigate to="/" /> : children;
 };
 export { RequireAuth };

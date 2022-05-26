@@ -2,10 +2,10 @@ import axios from 'axios';
 import { showError } from '../slices/signUp-slice';
 import { getUserData } from '../slices/signUp-slice';
 import { setCookie } from 'typescript-cookie';
-export let savedData;
+// export let savedData;
 
-export const sendingFormSignUp = (signUpData) => {
-  return async (dispatch) => {
+export const sendingFormSignUp = (signUpData: unknown) => {
+  return async (dispatch: AppDispatch) => {
     dispatch(showError(null));
     const sendRequest = async () => {
       const options = {
@@ -20,13 +20,12 @@ export const sendingFormSignUp = (signUpData) => {
         options
       );
 
-      console.log(response, signUpData);
       if (!response) {
-        throw new Error(`${response.data.message}`);
+        // throw new Error(`${response.data.message}`);
       }
       // data хранит {id, login, name}
       const data = await response.data;
-      savedData = setCookie('id', data.id, { expires: 1 });
+      // savedData = setCookie('id', data.id, { expires: 1 });
       return data;
     };
     try {

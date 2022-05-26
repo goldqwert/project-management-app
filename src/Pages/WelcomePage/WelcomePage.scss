@@ -3,9 +3,6 @@
   margin: 0 auto;
 }
 
-.welcome-header {
-
-}
 .welcome-wrapper {
   background: #aea4e3;
   padding: 20px;
@@ -16,7 +13,7 @@
   justify-content: flex-end;
   border-radius: 9px;
 }
-.welcome-wrapper >* {
+.welcome-wrapper > * {
   margin-right: 20px;
 }
 .welcome-text {

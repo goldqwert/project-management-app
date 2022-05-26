@@ -1,21 +1,25 @@
-import axios from "axios";
-import {showError} from "../slices/edit-slice";
+import axios from 'axios';
+import { showError } from '../slices/edit-slice';
 import { getTokenFromCookie } from '../../common/helper';
 
-export const editProfileData = (editData, userId) => {
-  return async (dispatch) => {
+export const editProfileData = (editData: unknown, userId: unknown) => {
+  return async (dispatch: AppDispatch) => {
     dispatch(showError(null));
     const sendEditData = async () => {
       const options = {
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
-           Authorization: `Bearer ${getTokenFromCookie()}`,
+          Authorization: `Bearer ${getTokenFromCookie()}`,
         },
       };
-      const response = await axios.put(`https://fathomless-savannah-49484.herokuapp.com/users/${userId}`, editData, options);
+      const response = await axios.put(
+        `https://fathomless-savannah-49484.herokuapp.com/users/${userId}`,
+        editData,
+        options
+      );
       if (!response) {
-        throw new Error("Something went wrong!");
+        throw new Error('Something went wrong!');
       }
       const data = response.data;
       return data;
@@ -23,7 +27,7 @@ export const editProfileData = (editData, userId) => {
     try {
       await sendEditData();
     } catch (e) {
-      dispatch(showError("Something went wrong!"));
+      dispatch(showError('Something went wrong!'));
     }
-  }
+  };
 };

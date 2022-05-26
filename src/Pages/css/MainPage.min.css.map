@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../MainPage/MainPage.scss"
+    ],
+    "names": [],
+    "file": "MainPage.min.css"
+}

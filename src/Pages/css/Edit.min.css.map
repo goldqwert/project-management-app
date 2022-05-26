@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,AAAC,CACZ,MAAM,CAAE,MAAM,CACd,SAAS,CAAE,MAAM,CAClB,AACD,AAAA,EAAE,AAAC,CACD,UAAU,CAAE,MAAM,CAClB,SAAS,CAAE,IAAI,CACf,WAAW,CAAE,IAAI,CACjB,KAAK,CAAE,KAAK,CACZ,UAAU,CAAE,IAAI,CAChB,aAAa,CAAE,IAAI,CACpB",
+    "sources": [
+        "../EditProfile/Edit.scss"
+    ],
+    "names": [],
+    "file": "Edit.min.css"
+}

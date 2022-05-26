@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import storage from "redux-persist/lib/storage";
+import storage from 'redux-persist/lib/storage';
 
 export interface DeleteState {
   id: string;
@@ -7,12 +7,12 @@ export interface DeleteState {
 }
 
 const initialState: DeleteState = {
-  id: "",
-  error: null
-}
+  id: '',
+  error: null,
+};
 
 const deleteUserSlice = createSlice({
-  name: "deleteUser",
+  name: 'deleteUser',
   initialState,
   reducers: {
     deleteUser(state, action) {
@@ -22,8 +22,7 @@ const deleteUserSlice = createSlice({
     showError(state, action) {
       state.error = action.payload;
     },
-  }
-
-})
-export const {deleteUser, showError} = deleteUserSlice.actions;
+  },
+});
+export const { deleteUser, showError } = deleteUserSlice.actions;
 export default deleteUserSlice.reducer;

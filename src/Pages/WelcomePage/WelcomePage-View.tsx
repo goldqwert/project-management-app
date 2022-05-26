@@ -4,15 +4,31 @@ import Footer from '../../components/footer/index';
 import { Link } from 'react-router-dom';
 import './WelcomePage.scss';
 
-const WelcomeView = ({ isLogged, signOutClick }) => {
+const WelcomeView = ({ isLogged, signOutClick }: any) => {
   return (
     <div className="wrapper">
+      {/* <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo hic laboriosam enim, atque
+        molestias non repellat eum dolorem, possimus mollitia temporibus, sunt sequi. Expedita
+        porro, dicta illo nam esse beatae? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Illo hic laboriosam enim, atque molestias non repellat eum dolorem, possimus mollitia
+        temporibus, sunt sequi. Expedita porro, dicta illo nam esse beatae? Lorem ipsum dolor sit
+        amet consectetur adipisicing elit. Illo hic laboriosam enim, atque molestias non repellat
+        eum dolorem, possimus mollitia temporibus, sunt sequi. Expedita porro, dicta illo nam esse
+        beatae? Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo hic laboriosam enim,
+        atque molestias non repellat eum dolorem, possimus mollitia temporibus, sunt sequi. Expedita
+        porro, dicta illo nam esse beatae?
+      </p> */}
       <header className="welcome-header">
         <div className="welcome-wrapper">
           {isLogged ? (
             <Link to="/main">
-              <Button type="primary" className="btn-go">Go To Main Page</Button>
-              <Button type="primary" onClick={signOutClick}>Sign Out</Button>
+              <Button type="primary" className="btn-go">
+                Go To Main Page
+              </Button>
+              <Button type="primary" onClick={signOutClick}>
+                Sign Out
+              </Button>
             </Link>
           ) : (
             <div className="welcome-wrapper">

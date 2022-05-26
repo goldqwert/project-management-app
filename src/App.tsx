@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import WelcomePage from './Pages/WelcomePage/index';
 import MainPage from './Pages/MainPage/index';
-import Login from './Pages/AuthorizationPage/LoginPage/index';
+import Login from './Pages/AuthorizationPage/LoginPage';
 import SignUp from './Pages/AuthorizationPage/SignUpPage/index';
 import { RequireAuth } from './components/hok/RequireAuth';
 import Error from './Pages/ErrorPage/index';

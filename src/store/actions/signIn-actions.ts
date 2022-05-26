@@ -3,14 +3,14 @@ import { getCookie, setCookie } from 'typescript-cookie';
 import { setIsAuth, getToken, showError } from '../slices/signin-slice';
 import { getTokenFromCookie } from '../../common/helper';
 
-export const sendingSignInData = (signInData) => {
-  return async (dispatch) => {
+export const sendingSignInData = (signInData: unknown) => {
+  return async (dispatch: AppDispatch) => {
     dispatch(showError(null));
     const sendRequestSignIn = async () => {
       const options = {
         headers: {
           'Content-Type': 'application/json',
-           Authorization: `Bearer ${getTokenFromCookie()}`,
+          Authorization: `Bearer ${getTokenFromCookie()}`,
           'Access-Control-Allow-Origin': '*',
         },
       };
@@ -20,7 +20,7 @@ export const sendingSignInData = (signInData) => {
         options
       );
       if (!response) {
-        throw new Error(response.data?.message);
+        // throw new Error(response.data?.message);
       }
 
       const token = response.data.token;

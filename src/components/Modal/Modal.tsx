@@ -4,11 +4,11 @@ import { Button } from 'antd';
 import './Modal.scss';
 import { useTranslation } from 'react-i18next';
 
-const BackDrop = ({ onConfirm }) => {
+const BackDrop = ({ onConfirm }: any) => {
   return <div className="backdrop" onClick={onConfirm} />;
 };
 
-const RootModal = ({ title, onSubmit, onCancel }) => {
+const RootModal = ({ title, onSubmit, onCancel }: any) => {
   const { t } = useTranslation();
 
   return (
@@ -28,17 +28,17 @@ const RootModal = ({ title, onSubmit, onCancel }) => {
   );
 };
 
-const Modal = ({ onSubmit, onConfirm, title, onCancel }) => {
+const Modal = ({ onSubmit, onConfirm, title, onCancel }: any) => {
   return (
     <>
-      {ReactDOM.createPortal(
+      {/* {ReactDOM.createPortal(
         <BackDrop onConfirm={onConfirm} />,
         document.getElementById('backdrop-root')
       )}
       {ReactDOM.createPortal(
         <RootModal title={title} onSubmit={onSubmit} onCancel={onCancel} />,
         document.getElementById('modal-root')
-      )}
+      )} */}
     </>
   );
 };

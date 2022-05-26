@@ -1,45 +1,66 @@
-export {};
+type UserType = {
+  id: string;
+  name: string;
+  login: string;
+  password: string;
+};
 
-declare global {
-  /**
-   * Now declare things that go in the global namespace,
-   * or augment existing declarations in the global namespace.
-   */
-   type UserType = {
-    id: string;
-    name: string;
+type BoardType = {
+  id: string;
+  title: string;
+  description: string;
+  columns?: ColumnType[];
+};
+
+type ColumnType = {
+  id: string;
+  title: string;
+  order: number;
+  tasks?: TaskType[];
+};
+
+type TaskType = {
+  id: string;
+  title: string;
+  done: boolean;
+  order: number;
+  description: string;
+  userId: string;
+  boardId: string;
+  columnId: string;
+  files: FileType[];
+};
+
+type FileType = {
+  filename: string;
+  fileSize: number;
+};
+
+type RootState = ReturnType<typeof store.getState>;
+type AppDispatch = typeof store.dispatch;
+const dispatchStore = store.dispatch;
+
+interface InitialSignInState {
+  login: string;
+  password: string;
+  getLoginData: {
     login: string;
     password: string;
   };
+  isAuth: boolean;
+  token: string | null;
+  error?: null | string;
+}
 
-   type BoardType = {
+interface InitialSignUpState {
+  name?: string;
+  login: string;
+  password: string;
+  confirmPassword?: string;
+  userData?: {
     id: string;
-    title: string;
-    description: string;
-    columns?: ColumnType[];
+    name: string;
+    login: string;
   };
-
-  type ColumnType = {
-    id: string;
-    title: string;
-    order: number;
-    tasks?: TaskType[];
-  };
-
-  type TaskType = {
-    id: string;
-    title: string;
-    done: boolean;
-    order: number;
-    description: string;
-    userId: string;
-    boardId: string;
-    columnId: string;
-    files: FileType[]
-  };
-
-  type FileType = {
-    filename: string,
-    fileSize: number
-  }
+  error?: null | string;
 }

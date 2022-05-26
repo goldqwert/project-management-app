@@ -17,7 +17,7 @@ const logout = createSlice({
   initialState,
   reducers: {
     clearUserData() {
-     // state.userData = action.payload;
+      // state.userData = action.payload;
       storage.removeItem('persist:root');
       // в dispatch прописать storage.removeItem('persist:root')
     },
