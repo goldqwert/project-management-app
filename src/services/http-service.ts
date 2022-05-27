@@ -4,6 +4,94 @@ import { getTokenFromCookie } from '../common/helper'
 const SERVER_URL = process.env.NODE_ENV === 'production' ? REMOTE_SERVER : LOCAL_SERVER
 
 class HttpService {
+    static async getUsers(): Promise<Omit<UserType, 'password'>[]> {
+        try {
+            const response = await fetch(`${SERVER_URL}users`, {
+                method: 'GET',
+                headers: { Authorization: `Bearer ${getTokenFromCookie()}` },
+            })
+            return response.json()
+        } catch (error) {
+            throw new Error('Error fetching Get Users from server')
+        }
+    }
+
+    static async getUser(id: string): Promise<Omit<UserType, 'password'>> {
+        try {
+            const response = await fetch(`${SERVER_URL}users/${id}`, {
+                method: 'GET',
+                headers: { Authorization: `Bearer ${getTokenFromCookie()}` },
+            })
+            return response.json()
+        } catch (error) {
+            throw new Error('Error fetching Get User from server')
+        }
+    }
+
+    static async deleteUser(id: string): Promise<string> {
+        try {
+            const response = await fetch(`${SERVER_URL}users/${id}`, {
+                method: 'DELETE',
+                headers: { Authorization: `Bearer ${getTokenFromCookie()}` },
+            })
+            return response.json()
+        } catch (error) {
+            throw new Error('Error fetching Delete User by id from server')
+        }
+    }
+
+    static async updateUser(
+      user: UserType
+  ): Promise<Omit<UserType, 'password'>> {
+      try {
+          const { id, name, login, password } = user
+          const response = await fetch(`${SERVER_URL}users/${id}`, {
+              method: 'PUT',
+              headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${getTokenFromCookie()}`,
+              },
+              body: JSON.stringify({ name, login,password }),
+          })
+          return response.json()
+      } catch (error) {
+          throw new Error('Error fetching Updated User from server')
+      }
+  }
+
+  static async signin(login:string,password:string): Promise<Token> {
+    try {
+        const response = await fetch(`${SERVER_URL}signin`, {
+            method: 'POST',
+            body: JSON.stringify({login,password}),
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+          },
+        })
+        return response.json()
+    } catch (error) {
+        throw new Error('Error fetching Post signin')
+    }
+}
+
+static async signup(user:Omit<UserType, 'id'>): Promise<Omit<UserType, 'password'>> {
+  try {
+      const response = await fetch(`${SERVER_URL}signup`, {
+          method: 'POST',
+          body: JSON.stringify(user),
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+      })
+      return response.json()
+  } catch (error) {
+      throw new Error('Error fetching Post signup')
+  }
+}
+
     static async getBoards(): Promise<Omit<BoardType, 'columns'>[]> {
         try {
             const response = await fetch(`${SERVER_URL}boards`, {
@@ -48,7 +136,7 @@ class HttpService {
         }
     }
 
-    static async createBoard(board: Omit<BoardType, 'id | columns'>): Promise<BoardType> {
+    static async createBoard(board: Omit<BoardType, 'id | columns'>): Promise<Omit<BoardType, 'columns'>> {
         try {
             const { title, description } = board
             const boardResponse = await fetch(`${SERVER_URL}boards`, {
@@ -74,10 +162,10 @@ class HttpService {
                     })
                 )
             )
-            const columns = await Promise.all(
-                createdColumns.map(async (c): Promise<Omit<ColumnType, 'tasks'>> => c.json())
-            )
-            return { ...createdBoard, columns } as BoardType
+            // const columns = await Promise.all(
+            //     createdColumns.map(async (c): Promise<Omit<ColumnType, 'tasks'>> => c.json())
+            // )
+            return createdBoard
         } catch (error) {
             throw new Error('Error fetching Posted Board from server')
         }
@@ -110,7 +198,7 @@ class HttpService {
     static async getColumn(
         boardId: string,
         columnId: string
-    ): Promise<Omit<ColumnType, 'tasks'>[]> {
+    ): Promise<ColumnType[]> {
         try {
             const response = await fetch(`${SERVER_URL}boards/${boardId}/columns/${columnId}`, {
                 method: 'GET',
@@ -124,7 +212,7 @@ class HttpService {
 
     static async createColumn(
         boardId: string,
-        column: Omit<ColumnType, 'id | tasks'>
+        column: Omit<ColumnType, 'id | tasks | order'>
     ): Promise<Omit<ColumnType, 'tasks'>> {
         try {
             const response = await fetch(`${SERVER_URL}boards/${boardId}/columns`, {
@@ -205,9 +293,9 @@ class HttpService {
         }
     }
 
-    static async createTask(task: Omit<TaskType, 'id,files'>): Promise<Omit<TaskType, 'files'>> {
+    static async createTask(task: Omit<TaskType, 'id | files | order'>): Promise<Pick<TaskType,  'id' | 'title' | 'description' | 'userId'>> {
         try {
-            const { title, done, order, description, userId, boardId, columnId } = task
+            const { title, description, userId, boardId, columnId } = task
             const response = await fetch(
                 `${SERVER_URL}boards/${boardId}/columns/${columnId}/tasks`,
                 {
@@ -217,7 +305,7 @@ class HttpService {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${getTokenFromCookie()}`,
                     },
-                    body: JSON.stringify({ title, done, order, description, userId }),
+                    body: JSON.stringify({ title, description, userId }),
                 }
             )
             return response.json()
@@ -228,7 +316,7 @@ class HttpService {
 
     static async updateTask(task: Omit<TaskType, 'files'>): Promise<Omit<TaskType, 'files'>> {
         try {
-            const { id, title, done, order, description, userId, boardId, columnId } = task
+            const { id, title, order, description, userId, boardId, columnId } = task
             const response = await fetch(
                 `${SERVER_URL}boards/${boardId}/columns/${columnId}/tasks/${id}`,
                 {
@@ -240,7 +328,6 @@ class HttpService {
                     },
                     body: JSON.stringify({
                         title,
-                        done,
                         order,
                         description,
                         userId,

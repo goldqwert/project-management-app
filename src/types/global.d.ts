@@ -29,7 +29,6 @@ declare global {
     type TaskType = {
         id: string
         title: string
-        done: boolean
         order: number
         description: string
         userId: string
@@ -41,5 +40,9 @@ declare global {
     type FileType = {
         filename: string
         fileSize: number
+    }
+
+    type Token = {
+      token: string
     }
 }
