@@ -1,0 +1,34 @@
+@import '../../scss/_variables.scss';
+@import '../../scss/_mixins.scss';
+
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+
+  &__not-sticky {
+    &.ant-layout-header {
+      height: 78px;
+      background: $white;
+    }
+  }
+
+  &__sticky {
+    &.ant-layout-header {
+      height: 78px;
+      background: $blue-black;
+      color: $milk;
+    }
+  }
+
+  &__links {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 auto;
+  }
+}

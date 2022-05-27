@@ -1,0 +1,3 @@
+import { DEVELOPERS_DATA, DEVELOPER_AVATAR } from './project-info';
+
+export { DEVELOPERS_DATA, DEVELOPER_AVATAR };

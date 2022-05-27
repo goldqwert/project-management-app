@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { Spin } from 'antd';
 
+import { ErrorBoundary } from './components';
 import App from './app';
 
 import reportWebVitals from './reportWebVitals';
 
+import 'antd/dist/antd.min.css';
 import './index.scss';
+import './scss/_normalize.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <ErrorBoundary>
+        <Suspense fallback={<Spin />}>
+          <App />
+        </Suspense>
+      </ErrorBoundary>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
