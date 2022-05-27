@@ -1,3 +1,3 @@
-import WelcomePage from './WelcomePage-Container';
+import WelcomePage from './WelcomePage-Container'
 
-export default WelcomePage;
+export default WelcomePage

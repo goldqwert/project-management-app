@@ -1,3 +1,3 @@
-import MainPage from './MainPage-Container';
+import MainPage from './MainPage-Container'
 
-export default MainPage;
+export default MainPage

@@ -1,4 +1,4 @@
-import Login from './Login-Container';
-import './Login-Types';
+import Login from './Login-Container'
+import './Login-Types'
 
-export default Login;
+export default Login

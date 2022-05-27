@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const BoardView = () => {
-  return <div></div>;
-};
+    return <div></div>
+}
 
-export default BoardView;
+export default BoardView

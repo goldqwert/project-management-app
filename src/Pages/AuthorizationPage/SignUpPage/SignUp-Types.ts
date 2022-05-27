@@ -1,6 +1,6 @@
 export interface FormState {
-  firstName: string;
-  login: string;
-  password: string;
-  confirmPassword: string;
+    firstName: string
+    login: string
+    password: string
+    confirmPassword: string
 }

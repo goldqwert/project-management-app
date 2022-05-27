@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 const BoardContainer = () => {
-  return <div></div>;
-};
+    return <div></div>
+}
 
-export default BoardContainer;
+export default BoardContainer

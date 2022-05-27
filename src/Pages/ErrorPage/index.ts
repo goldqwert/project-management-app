@@ -1,3 +1,3 @@
-import Error from './Error-Container';
+import Error from './Error-Container'
 
-export default Error;
+export default Error
