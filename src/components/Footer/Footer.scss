@@ -2,18 +2,21 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .link a {
   text-decoration: none;
   margin-left: 5px;
   color: black;
 }
- a:hover  {
+
+a:hover {
   transform: scale(1.1);
 }
 
 .footer {
   margin-top: 50px;
 }
+
 .footer-content {
   display: flex;
   justify-content: space-between;
@@ -24,3 +27,5 @@
   background: #aea4e3;
   border-radius: 9px;
 }
+
+/*# sourceMappingURL=Footer.css.map */

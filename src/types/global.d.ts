@@ -5,14 +5,14 @@ declare global {
    * Now declare things that go in the global namespace,
    * or augment existing declarations in the global namespace.
    */
-   type UserType = {
+  type UserType = {
     id: string;
     name: string;
     login: string;
     password: string;
   };
 
-   type BoardType = {
+  type BoardType = {
     id: string;
     title: string;
     description: string;
@@ -35,11 +35,11 @@ declare global {
     userId: string;
     boardId: string;
     columnId: string;
-    files: FileType[]
+    files: FileType[];
   };
 
   type FileType = {
-    filename: string,
-    fileSize: number
-  }
+    filename: string;
+    fileSize: number;
+  };
 }

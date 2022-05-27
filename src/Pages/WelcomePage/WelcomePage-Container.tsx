@@ -12,7 +12,7 @@ const WelcomeContainer = () => {
   };
   let isLogged;
   getCookie('jwt') ? (isLogged = true) : (isLogged = false);
-  //getCookie(savedData)? isLogged = true : isLogged = false;
+  // getCookie(savedData)? isLogged = true : isLogged = false;
   return <WelcomeView signOutClick={signOutClick} isLogged={isLogged} />;
 };
 export default WelcomeContainer;

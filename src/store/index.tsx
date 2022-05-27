@@ -20,8 +20,8 @@ import {
 const rootReducer = combineReducers({
   signUp: signUpData,
   signIn: signInData,
-  logout: logout,
-  edit: edit,
+  logout,
+  edit,
   delete: deleteUser,
   board: newBoard,
 });

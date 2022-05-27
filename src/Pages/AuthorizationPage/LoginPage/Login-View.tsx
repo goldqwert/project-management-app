@@ -1,10 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
-import { getLoginForSignIn, getPasswordForSignIn } from '../../../store/slices/signin-slice';
+import {
+  getLoginForSignIn,
+  getPasswordForSignIn,
+} from '../../../store/slices/signin-slice';
 import '../SignUpPage/Sign-up.scss';
 
-const LoginView = ({ dispatch, handleSubmit, handleFormSubmit, errors, register, error }) => {
+const LoginView = ({
+  dispatch,
+  handleSubmit,
+  handleFormSubmit,
+  errors,
+  register,
+  error,
+}) => {
   return (
     <div className="form">
       <h3>Login to account</h3>

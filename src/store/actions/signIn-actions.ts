@@ -10,20 +10,20 @@ export const sendingSignInData = (signInData) => {
       const options = {
         headers: {
           'Content-Type': 'application/json',
-           Authorization: `Bearer ${getTokenFromCookie()}`,
+          Authorization: `Bearer ${getTokenFromCookie()}`,
           'Access-Control-Allow-Origin': '*',
         },
       };
       const response = await axios.post(
         'https://fathomless-savannah-49484.herokuapp.com/signin',
         signInData,
-        options
+        options,
       );
       if (!response) {
         throw new Error(response.data?.message);
       }
 
-      const token = response.data.token;
+      const { token } = response.data;
       setCookie('jwt', token, { expires: 1 });
       dispatch(setIsAuth(true));
       dispatch(getToken(getCookie('jwt')));
