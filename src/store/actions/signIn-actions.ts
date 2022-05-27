@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getCookie, setCookie } from 'typescript-cookie';
-import { setIsAuth, getToken, showError } from '../slices/signin-slice';
+import { getToken, showError } from '../slices/signin-slice';
 import { getTokenFromCookie } from '../../common/helper';
 
 export const sendingSignInData = (signInData) => {
@@ -25,8 +25,7 @@ export const sendingSignInData = (signInData) => {
 
       const token = response.data.token;
       setCookie('jwt', token, { expires: 1 });
-      dispatch(setIsAuth(true));
-      dispatch(getToken(getCookie('jwt')));
+      dispatch(getToken(token));
       return token;
     };
     try {

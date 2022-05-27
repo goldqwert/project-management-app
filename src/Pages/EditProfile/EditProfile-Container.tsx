@@ -6,6 +6,8 @@ import { editProfileData } from '../../store/actions/edit-actions';
 import { dispatchStore, RootState } from '../../types/types';
 import { deleteUserProfile } from '../../store/actions/deleteUser-actions';
 import EditProfileView from './EditProfile-View';
+import { getToken } from '../../store/slices/signin-slice';
+import { deleteUser } from '../../store/slices/deleteUser-slice';
 
 const EditProfileContainer = () => {
   const [showModal, setShowModal] = useState(false);
@@ -25,6 +27,8 @@ const EditProfileContainer = () => {
   };
   const deleteUserModalHandler = () => {
     dispatchStore(deleteUserProfile(userId));
+    dispatch(deleteUser(userId));
+    dispatchStore(getToken(""));
     navigate('/');
   };
 

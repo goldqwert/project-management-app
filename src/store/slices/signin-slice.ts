@@ -8,7 +8,6 @@ const initialState: InitialSignInState = {
     login: '',
     password: '',
   },
-  isAuth: false,
   token: '',
   error: null,
 };
@@ -26,9 +25,6 @@ const signInData = createSlice({
     getLoginDataFromUser(state, action) {
       state.getLoginData = action.payload;
     },
-    setIsAuth(state, action) {
-      state.isAuth = action.payload;
-    },
     getToken(state, action) {
       state.token = action.payload;
     },
@@ -41,7 +37,6 @@ export const {
   getLoginForSignIn,
   getPasswordForSignIn,
   getLoginDataFromUser,
-  setIsAuth,
   getToken,
   showError,
 } = signInData.actions;

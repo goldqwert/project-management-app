@@ -11,7 +11,6 @@ export interface InitialSignInState {
     login: string;
     password: string;
   };
-  isAuth: boolean;
   token: string | null;
   error?: null | string;
 }

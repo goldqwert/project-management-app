@@ -25,7 +25,6 @@ export const deleteUserProfile = (userId) => {
     }
     try {
       await deleteDataUser();
-      dispatch(deleteUser(userId));
     } catch (error) {
       dispatch(showError("Something went wrong!"));
     }
