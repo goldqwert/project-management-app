@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch, Layout, Menu, Form, Input, Button } from 'antd';
+import type { ItemType } from 'antd/lib/menu/hooks/useItems';
 import Modal from '../Modal/Modal';
 import { dispatchStore, RootState } from '../../types/types';
 import { clearUserData } from '../../store/slices/logout-slice';
@@ -39,6 +40,26 @@ const HeaderMenu = () => {
     dispatchStore(getNewBoard(boardData));
     setShowNewBoardModal(false);
   };
+  const menuItems:ItemType[]  = [
+    {
+      key: 'edit',
+      icon: <Link to="/edit">Edit profile</Link>,
+    },
+    {
+      key: 'out',
+      label: 'Sign Out',
+      onClick: signOutClick
+    },
+    {
+      key: 'board',
+      label: 'Create new board',
+      onClick: createBoardClick
+    },
+    {
+      key: 'switch',
+      icon: <Switch defaultChecked onChange={onChange} />
+    }
+  ]
 
   return (
     <>
@@ -104,26 +125,12 @@ const HeaderMenu = () => {
           </Form>
         </Modal>
       )}
-
       <Layout style={{ position: 'sticky', top: 0, zIndex: 1, marginBottom: '50px' }}>
         <Header style={{ zIndex: 1, width: '100%', background: 'white' }}>
-          <Menu theme="light" mode="horizontal">
-            <Menu.Item key="profile">
-              <Link to="/edit">Edit profile</Link>
-            </Menu.Item>
-            <Menu.Item key="out" onClick={signOutClick}>
-              Sign Out
-            </Menu.Item>
-            <Menu.Item key="board" onClick={createBoardClick}>
-              Create new board
-            </Menu.Item>
-            <Menu.Item key="switch">
-              <Switch defaultChecked onChange={onChange} />
-            </Menu.Item>
-          </Menu>
+            <Menu theme="light" mode="horizontal" items={menuItems} />
         </Header>
       </Layout>
     </>
-  );
+  )
 };
 export default HeaderMenu;

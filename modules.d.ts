@@ -4,7 +4,7 @@ declare module '*.jsx';
 declare module '*.js';
 declare module 'redux-promise';
 declare module 'react'
-
+declare module 'antd';
   export class FC {
   }
 
