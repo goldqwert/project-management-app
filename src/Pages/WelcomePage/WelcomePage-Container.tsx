@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import WelcomeView from './WelcomePage-View';
 import { getCookie, removeCookie } from 'typescript-cookie';
+import WelcomeView from './WelcomePage-View';
 
 const WelcomeContainer = () => {
   const navigate = useNavigate();

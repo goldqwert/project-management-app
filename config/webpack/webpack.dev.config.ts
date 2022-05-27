@@ -77,7 +77,7 @@ export default {
   },
   devtool: "inline-source-map",
   devServer: {
-    port: 4000,
+    port: 5000,
     hot: true,
     open: true,
     historyApiFallback: true,

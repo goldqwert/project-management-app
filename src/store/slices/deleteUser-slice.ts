@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import storage from "redux-persist/lib/storage";
+import storage from 'redux-persist/lib/storage';
 import { removeCookie } from 'typescript-cookie';
 
 export interface DeleteState {
@@ -18,8 +18,8 @@ const deleteUserSlice = createSlice({
   reducers: {
     deleteUser(state, action) {
       state.id = action.payload;
-      removeCookie("jwt");
-      removeCookie("id");
+      removeCookie('jwt');
+      removeCookie('id');
       // storage.removeItem('persist:root');
     },
     showError(state, action) {

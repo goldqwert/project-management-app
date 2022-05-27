@@ -42,7 +42,9 @@ const SignUpView = ({
             })}
           />
           {errors?.firstName && (
-            <p className="text-invalid">{`${errors?.firstName.message || 'Error'}`}</p>
+            <p className="text-invalid">{`${
+              errors?.firstName.message || 'Error'
+            }`}</p>
           )}
           <label htmlFor="login">Login</label>
           <input
@@ -62,7 +64,11 @@ const SignUpView = ({
               },
             })}
           />
-          {errors?.login && <p className="text-invalid">{`${errors?.login.message || 'Error'}`}</p>}
+          {errors?.login && (
+            <p className="text-invalid">{`${
+              errors?.login.message || 'Error'
+            }`}</p>
+          )}
           <label htmlFor="password">Password</label>
           <input
             name="password"
@@ -82,7 +88,9 @@ const SignUpView = ({
             })}
           />
           {errors?.password && (
-            <p className="text-invalid">{`${errors?.password.message || 'Error'}`}</p>
+            <p className="text-invalid">{`${
+              errors?.password.message || 'Error'
+            }`}</p>
           )}
           <label htmlFor="confirm-password">Confirm password</label>
           <input
@@ -90,7 +98,9 @@ const SignUpView = ({
             placeholder="Confirm password"
             type="password"
             id="confirm-password"
-            className={`${errors?.confirmPassword ? 'input error-input' : 'input'}`}
+            className={`${
+              errors?.confirmPassword ? 'input error-input' : 'input'
+            }`}
             {...register('confirmPassword', {
               onChange: (e) => {
                 dispatch(getConfirmPasswordData(e.target.value));
@@ -104,7 +114,9 @@ const SignUpView = ({
             })}
           />
           {errors?.confirmPassword && (
-            <p className="text-invalid">{`${errors?.confirmPassword.message || 'Error'}`}</p>
+            <p className="text-invalid">{`${
+              errors?.confirmPassword.message || 'Error'
+            }`}</p>
           )}
           <Link to="/login">
             <div className="account-settings">

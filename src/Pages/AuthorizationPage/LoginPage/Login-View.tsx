@@ -38,7 +38,9 @@ const LoginView = ({
             })}
           />
           {errors?.login && (
-            <p className="text-invalid">{`${errors?.login?.message || 'Error'}`}</p>
+            <p className="text-invalid">{`${
+              errors?.login?.message || 'Error'
+            }`}</p>
           )}
           <label htmlFor="password">Password</label>
           <input
@@ -59,7 +61,9 @@ const LoginView = ({
             })}
           />
           {errors?.password && (
-            <p className="text-invalid">{`${errors?.password.message || 'Error'}`}</p>
+            <p className="text-invalid">{`${
+              errors?.password.message || 'Error'
+            }`}</p>
           )}
           {error && <p className="text-invalid">{`${error}`}</p>}
           <Link to="/sign-up">

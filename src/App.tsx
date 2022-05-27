@@ -8,7 +8,7 @@ import { RequireAuth } from './components/hok/RequireAuth';
 import Error from './Pages/ErrorPage/index';
 import EditProfile from './Pages/EditProfile';
 import Board from './Pages/BoardPage';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (

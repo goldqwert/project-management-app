@@ -15,11 +15,11 @@ const Modal = (props) => {
     <>
       {ReactDOM.createPortal(
         <BackDrop onConfirm={props.onConfirm} />,
-        document.getElementById('backdrop-root')
+        document.getElementById('backdrop-root'),
       )}
       {ReactDOM.createPortal(
         <RootModal>{props.children}</RootModal>,
-        document.getElementById('modal-root')
+        document.getElementById('modal-root'),
       )}
     </>
   );

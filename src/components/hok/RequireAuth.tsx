@@ -5,7 +5,7 @@ import { RootState } from '../../types/types';
 
 const RequireAuth = ({ children }) => {
   const token = useSelector((state: RootState) => state.signIn.token);
-  //const token = getCookie('jwt');
+  // const token = getCookie('jwt');
   return !token ? <Navigate to="/" /> : children;
 };
 export { RequireAuth };

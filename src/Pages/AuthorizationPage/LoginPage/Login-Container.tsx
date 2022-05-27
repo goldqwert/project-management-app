@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { dispatchStore, RootState } from '../../../types/types';
 import React from 'react';
+import { useForm } from 'react-hook-form';
+import { dispatchStore, RootState } from '../../../types/types';
 import LoginView from './Login-View';
 import { sendingSignInData } from '../../../store/actions/signIn-actions';
-import { useForm } from 'react-hook-form';
 import { LoginState } from './Login-Types';
 
 const LoginContainer = () => {

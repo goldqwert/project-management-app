@@ -8,6 +8,6 @@ app.get( '*', ( req, res ) => {
   res.status( 200 );
   return res.sendFile(path.join(DIST_DIR, "index.html"));
   } );
-app.listen( 4000, () => {
-    console.log( 'Production server started at <http://localhost:4000>' );
+app.listen( 5000, () => {
+    console.log( 'Production server started at <http://localhost:5000>' );
 } );

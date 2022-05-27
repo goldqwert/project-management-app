@@ -6,7 +6,11 @@ import Modal from '../Modal/Modal';
 import { dispatchStore, RootState } from '../../types/types';
 import { clearUserData } from '../../store/slices/logout-slice';
 import getNewBoard from '../../store/actions/newBoard-actions';
-import { createNewBoardTitle, createNewBoardDescription } from '../../store/slices/board-slice';
+import {
+  createNewBoardTitle,
+  createNewBoardDescription,
+} from '../../store/slices/board-slice';
+
 const { Header } = Layout;
 
 const HeaderMenu = () => {
@@ -73,7 +77,9 @@ const HeaderMenu = () => {
             <Form.Item
               label="Title"
               name="title"
-              rules={[{ required: true, message: 'Please input title of the board!' }]}
+              rules={[
+                { required: true, message: 'Please input title of the board!' },
+              ]}
             >
               <Input
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {
@@ -105,7 +111,9 @@ const HeaderMenu = () => {
         </Modal>
       )}
 
-      <Layout style={{ position: 'sticky', top: 0, zIndex: 1, marginBottom: '50px' }}>
+      <Layout
+        style={{ position: 'sticky', top: 0, zIndex: 1, marginBottom: '50px' }}
+      >
         <Header style={{ zIndex: 1, width: '100%', background: 'white' }}>
           <Menu theme="light" mode="horizontal">
             <Menu.Item key="profile">
