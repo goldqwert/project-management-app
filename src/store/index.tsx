@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
+import { CookieStorage } from 'redux-persist-cookie-storage';
 import {
   persistStore,
   persistReducer,
@@ -10,6 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import { Cookies } from 'typescript-cookie';
 import signUpData from './slices/signUp-slice';
 import signInData from './slices/signin-slice';
 import logout from './slices/logout-slice';
@@ -27,7 +29,7 @@ const rootReducer = combineReducers({
 });
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: new CookieStorage(Cookies),
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -41,5 +43,5 @@ const store = configureStore({
     }),
 });
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(store, {});
 export default store;
