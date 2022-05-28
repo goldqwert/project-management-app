@@ -1,8 +1,11 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Layout, Form, Input, Button, Divider, Typography } from 'antd';
 import { UserOutlined, LockOutlined, LaptopOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 
 import { ButtonGoHome } from '../../components';
+import { authService } from '../../api';
+import { getMessageFromError, openNotification } from '../../helpers';
 
 import './index.scss';
 
@@ -10,7 +13,28 @@ const { Content } = Layout;
 const { Title } = Typography;
 
 const SignUpPage = () => {
-  const onFinish = (values: unknown) => console.log('Received values of form: ', values);
+  const navigate = useNavigate();
+  const [isSignUpLoading, setIsSignUpLoading] = useState(false);
+  const [isSignUpDisabled, setIsSignUpDisabled] = useState(false);
+
+  const onFinish = async (values: ISignUpData) => {
+    setIsSignUpLoading(true);
+    try {
+      await authService.signUp(values);
+      openNotification('success', 'User successfully created! You can login!');
+      setTimeout(() => {
+        setIsSignUpLoading(false);
+        navigate('/sign-in');
+      }, 1000);
+    } catch (error) {
+      setIsSignUpLoading(false);
+      openNotification('error', getMessageFromError(error));
+    }
+  };
+
+  const onFinishFailed = () => setIsSignUpDisabled(true);
+
+  const onFieldsChange = () => setIsSignUpDisabled(false);
 
   return (
     <Content className="sign-up">
@@ -23,8 +47,9 @@ const SignUpPage = () => {
         <Form
           name="normal_login"
           className="login-form"
-          initialValues={{ remember: true }}
           onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          onFieldsChange={onFieldsChange}
         >
           <Form.Item
             name="name"
@@ -32,8 +57,9 @@ const SignUpPage = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your name!',
+                message: 'Name is required and must be no more 30 symbols',
                 whitespace: true,
+                max: 30,
               },
             ]}
           >
@@ -49,8 +75,10 @@ const SignUpPage = () => {
             rules={[
               {
                 required: true,
-                message: 'Please input your login!',
+                message: 'Login is required and must be at least 3 and no more than 30 symbols',
                 whitespace: true,
+                min: 3,
+                max: 30,
               },
             ]}
           >
@@ -63,7 +91,15 @@ const SignUpPage = () => {
 
           <Form.Item
             name="password"
-            rules={[{ required: true, message: 'Please input your password!', whitespace: true }]}
+            rules={[
+              {
+                required: true,
+                message: 'Password is required and must be at least 8 and no more than 30 symbols',
+                whitespace: true,
+                min: 8,
+                max: 30,
+              },
+            ]}
           >
             <Input
               autoComplete="off"
@@ -74,7 +110,13 @@ const SignUpPage = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
+            <Button
+              disabled={isSignUpDisabled}
+              loading={isSignUpLoading}
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+            >
               Register
             </Button>
             <Divider />
