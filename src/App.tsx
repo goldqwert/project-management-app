@@ -1,15 +1,15 @@
 import { Layout } from 'antd';
+import { useCookies } from 'react-cookie';
 
 import { Footer, Header } from './components';
-import { useAppSelector } from './hooks';
 import { AppRoutes } from './routes';
 
 const App = () => {
-  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const [cookies] = useCookies(['authToken']);
 
   return (
     <Layout className="layout">
-      {isAuth && <Header />}
+      {cookies.authToken && <Header />}
       <AppRoutes />
       <Footer />
     </Layout>

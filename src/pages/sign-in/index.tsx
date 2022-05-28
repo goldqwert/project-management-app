@@ -1,28 +1,29 @@
 import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 
 import { Layout, Form, Divider, Typography, Input, Button } from 'antd';
 import { LockOutlined, LaptopOutlined } from '@ant-design/icons';
 
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useCookiesStorage } from '../../hooks';
 import { ButtonGoHome } from '../../components';
 import { authService } from '../../api';
+import { getMessageFromError, openNotification } from '../../helpers';
+
+import { AuthUserData } from './types';
 
 import './index.scss';
-import { getMessageFromError, openNotification } from '../../helpers';
-import { setAuthToken } from '../../store/reducers';
 
 const { Content } = Layout;
 const { Title } = Typography;
 
 const SignInPage = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const { cookies, setCookie } = useCookiesStorage(['authToken', 'authUserId']);
   const [isSignInLoading, setIsSignInLoading] = useState(false);
   const [isSignInDisabled, setIsSignInDisabled] = useState(false);
 
-  if (isAuth) {
+  if (cookies.authToken) {
     return <Navigate replace to="/main" />;
   }
 
@@ -30,11 +31,13 @@ const SignInPage = () => {
     setIsSignInLoading(true);
     try {
       const { token } = await authService.signIn(values);
-      dispatch(setAuthToken(token));
       openNotification('success', 'You are successfully logged!');
+      setCookie('authToken', token);
+      setCookie('authUserId', jwt_decode<AuthUserData>(token).userId);
+      navigate('/main');
+
       setTimeout(() => {
         setIsSignInLoading(false);
-        navigate('/main');
       }, 1000);
     } catch (error) {
       setIsSignInLoading(false);

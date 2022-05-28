@@ -1,22 +1,22 @@
 import { Layout, Carousel, List, Avatar, Descriptions, Button, Divider } from 'antd';
+import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 
 import { DEVELOPERS_DATA, DEVELOPER_AVATAR } from '../../constants';
-import { useAppSelector } from '../../hooks';
 
 import './index.scss';
 
 const { Content } = Layout;
 
 const WelcomePage = () => {
-  const isAuth = useAppSelector((state) => state.auth.isAuth);
+  const [cookies] = useCookies(['authToken']);
 
   return (
     <>
-      <Content className={isAuth ? 'welcome welcome__with-header' : 'welcome'}>
+      <Content className={cookies.authToken ? 'welcome welcome__with-header' : 'welcome'}>
         <div className="welcome__content">
           <div className="welcome__auth">
-            {isAuth ? (
+            {cookies.authToken ? (
               <Button type="primary">
                 <Link to="/main">Go to main Page</Link>
               </Button>

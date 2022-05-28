@@ -4,13 +4,13 @@ import { Layout, Button } from 'antd';
 
 import './index.scss';
 
-import { useAppDispatch } from '../../hooks';
-import { logout } from '../../store';
+import { useCookiesStorage } from '../../hooks';
 
 const { Header: HeaderComponent } = Layout;
 
 const Header = () => {
-  const dispatch = useAppDispatch();
+  const { onLogout } = useCookiesStorage(['authToken', 'authUserId']);
+
   const [sticky, setSticky] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -24,7 +24,7 @@ const Header = () => {
 
   const handleScroll = () => setSticky(window.pageYOffset !== 0);
 
-  const onLogout = () => dispatch(logout());
+  const logout = () => onLogout();
 
   return (
     <HeaderComponent
@@ -33,9 +33,9 @@ const Header = () => {
     >
       <div className="header__links">
         <Button type="link">
-          <Link to="/">Edit profile</Link>
+          <Link to="/edit-profile">Edit profile</Link>
         </Button>
-        <Button type="link" onClick={onLogout}>
+        <Button type="link" onClick={logout}>
           <Link to="/">Sign Out</Link>
         </Button>
         <Button type="link">

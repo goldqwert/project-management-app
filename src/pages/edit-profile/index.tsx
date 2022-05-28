@@ -1,56 +1,58 @@
 import { useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { Layout, Form, Input, Button, Divider, Typography } from 'antd';
-import { UserOutlined, LockOutlined, LaptopOutlined } from '@ant-design/icons';
 
-import { ButtonGoHome } from '../../components';
-import { authService } from '../../api';
-import { getMessageFromError, openNotification } from '../../helpers';
+import { Layout, Form, Divider, Typography, Input, Button } from 'antd';
+import { LockOutlined, LaptopOutlined, UserOutlined } from '@ant-design/icons';
+
+import { useCookiesStorage } from '../../hooks';
+import { usersService } from '../../api';
 
 import './index.scss';
-import { useCookiesStorage } from '../../hooks';
+import { getMessageFromError, openNotification } from '../../helpers';
+import { ModalDeleteUser } from '../../components';
 
 const { Content } = Layout;
 const { Title } = Typography;
 
-const SignUpPage = () => {
-  const navigate = useNavigate();
-  const { cookies } = useCookiesStorage(['authToken']);
-  const [isSignUpLoading, setIsSignUpLoading] = useState(false);
-  const [isSignUpDisabled, setIsSignUpDisabled] = useState(false);
+const EditProfile = () => {
+  const { cookies } = useCookiesStorage(['authToken', 'authUserId']);
+  const [isEditProfileLoading, setIsEditProfileLoading] = useState(false);
+  const [isEditProfileDisabled, setIsEditProfileDisabled] = useState(false);
 
-  if (cookies.authToken) {
-    return <Navigate replace to="/main" />;
-  }
+  const [form] = Form.useForm();
 
   const onFinish = async (values: ISignUpData) => {
-    setIsSignUpLoading(true);
+    setIsEditProfileLoading(true);
     try {
-      await authService.signUp(values);
-      openNotification('success', 'User successfully created! You can login!');
+      await usersService.editUser(cookies.authUserId, cookies.authToken, values);
+
+      openNotification('success', 'New user data succesfully saved!');
+      form.resetFields();
+
       setTimeout(() => {
-        setIsSignUpLoading(false);
-        navigate('/sign-in');
+        setIsEditProfileLoading(false);
+
+        // navigate('/main');
       }, 1000);
     } catch (error) {
-      setIsSignUpLoading(false);
+      setIsEditProfileLoading(false);
       openNotification('error', getMessageFromError(error));
     }
   };
 
-  const onFinishFailed = () => setIsSignUpDisabled(true);
+  const onFinishFailed = () => setIsEditProfileDisabled(true);
 
-  const onFieldsChange = () => setIsSignUpDisabled(false);
+  const onFieldsChange = () => setIsEditProfileDisabled(false);
 
   return (
-    <Content className="sign-up">
-      <div className="sign-up__content">
-        <Title>Sign Up</Title>
-        <div className="sign-up__go-home">
-          <ButtonGoHome />
+    <Content className="edit-profile">
+      <div className="edit-profile__content">
+        <Title>Edit profile</Title>
+        <div className="edit-profile__delete-account">
+          <ModalDeleteUser />
         </div>
         <Divider />
         <Form
+          form={form}
           name="normal_login"
           className="login-form"
           onFinish={onFinish}
@@ -72,7 +74,7 @@ const SignUpPage = () => {
             <Input
               autoComplete="off"
               prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Name"
+              placeholder="New name"
             />
           </Form.Item>
 
@@ -91,7 +93,7 @@ const SignUpPage = () => {
             <Input
               autoComplete="off"
               prefix={<LaptopOutlined className="site-form-item-icon" />}
-              placeholder="Login"
+              placeholder="New login"
             />
           </Form.Item>
 
@@ -111,24 +113,20 @@ const SignUpPage = () => {
               autoComplete="off"
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
-              placeholder="Password"
+              placeholder="New password"
             />
           </Form.Item>
 
           <Form.Item>
             <Button
-              disabled={isSignUpDisabled}
-              loading={isSignUpLoading}
+              disabled={isEditProfileDisabled}
+              loading={isEditProfileLoading}
               type="primary"
               htmlType="submit"
               className="login-form-button"
             >
-              Register
+              Edit
             </Button>
-            <Divider />
-            <div>
-              If you have an account, you can <Link to="/sign-in">login!</Link>
-            </div>
           </Form.Item>
         </Form>
       </div>
@@ -136,4 +134,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default EditProfile;

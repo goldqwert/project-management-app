@@ -1,39 +1,30 @@
 import { useEffect } from 'react';
-import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
 
+import useCookiesStorage from './use-cookies-storage';
 import { usersService } from '../api';
-import { logout } from '../store';
-import { useAppDispatch } from './redux';
 
 const useAuth = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const [cookies] = useCookies();
+  const { cookies, onLogout } = useCookiesStorage([]);
 
   useEffect(() => {
     checkUserAuth();
   }, []);
 
   const checkUserAuth = async () => {
-    const authData = cookies?.['persist%3Aroot']?.auth;
+    const { authUserId, authToken } = cookies;
 
-    let authUserId = '';
-    let authToken = '';
+    let id = '';
+    let token = '';
 
-    if (authData) {
-      const parsedAuthData = JSON.parse(authData);
-
-      authUserId = parsedAuthData.authUserId;
-      authToken = parsedAuthData.authToken;
+    if (authUserId && authToken) {
+      id = authUserId;
+      token = authToken;
     }
 
     try {
-      await usersService.getUser(authUserId, authToken);
+      await usersService.getUser(id, token);
     } catch (error) {
-      dispatch(logout());
-      navigate('/');
+      onLogout();
     }
   };
 };

@@ -21,6 +21,26 @@ class UsersService {
 
     throw new Error(data.message);
   }
+
+  async editUser(id: string, token: string, { name, login, password }: ISignUpData) {
+    const response = await fetch(`${this.usersUrl}${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ name, login, password }),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await response.json();
+
+    if (response.status === HTTP_STATUS.SUCCESS) {
+      return data;
+    }
+
+    throw new Error(data.message);
+  }
 }
 
 const usersService = new UsersService();
