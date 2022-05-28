@@ -36,9 +36,7 @@ const SignInPage = () => {
       setCookie('authUserId', jwt_decode<AuthUserData>(token).userId);
       navigate('/main');
 
-      setTimeout(() => {
-        setIsSignInLoading(false);
-      }, 1000);
+      setIsSignInLoading(false);
     } catch (error) {
       setIsSignInLoading(false);
       openNotification('error', getMessageFromError(error));

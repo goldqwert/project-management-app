@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Layout, Form, Divider, Typography, Input, Button } from 'antd';
 import { LockOutlined, LaptopOutlined, UserOutlined } from '@ant-design/icons';
 
-import { useCookiesStorage } from '../../hooks';
+import { useAuth, useCookiesStorage } from '../../hooks';
 import { usersService } from '../../api';
 
 import './index.scss';
@@ -18,6 +18,8 @@ const EditProfile = () => {
   const [isEditProfileLoading, setIsEditProfileLoading] = useState(false);
   const [isEditProfileDisabled, setIsEditProfileDisabled] = useState(false);
 
+  useAuth();
+
   const [form] = Form.useForm();
 
   const onFinish = async (values: ISignUpData) => {
@@ -27,12 +29,7 @@ const EditProfile = () => {
 
       openNotification('success', 'New user data succesfully saved!');
       form.resetFields();
-
-      setTimeout(() => {
-        setIsEditProfileLoading(false);
-
-        // navigate('/main');
-      }, 1000);
+      setIsEditProfileLoading(false);
     } catch (error) {
       setIsEditProfileLoading(false);
       openNotification('error', getMessageFromError(error));

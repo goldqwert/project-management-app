@@ -28,10 +28,8 @@ const SignUpPage = () => {
     try {
       await authService.signUp(values);
       openNotification('success', 'User successfully created! You can login!');
-      setTimeout(() => {
-        setIsSignUpLoading(false);
-        navigate('/sign-in');
-      }, 1000);
+      setIsSignUpLoading(false);
+      navigate('/sign-in');
     } catch (error) {
       setIsSignUpLoading(false);
       openNotification('error', getMessageFromError(error));

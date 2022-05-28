@@ -1,6 +1,7 @@
 const HTTP_STATUS = {
   CREATED: 201,
   SUCCESS: 200,
+  NO_CONTENT: 204,
   CONFLICT: 409,
 };
 

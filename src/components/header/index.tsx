@@ -11,6 +11,7 @@ const { Header: HeaderComponent } = Layout;
 const Header = () => {
   const { onLogout } = useCookiesStorage(['authToken', 'authUserId']);
 
+  // TODO convert logic of sticky to custom hook
   const [sticky, setSticky] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 

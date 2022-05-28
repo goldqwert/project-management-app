@@ -41,6 +41,24 @@ class UsersService {
 
     throw new Error(data.message);
   }
+
+  async deleteUser(id: string, token: string) {
+    const response = await fetch(`${this.usersUrl}${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+      },
+    });
+
+    if (response.status === HTTP_STATUS.NO_CONTENT) {
+      return;
+    }
+
+    const data = await response.json();
+
+    throw new Error(data.message);
+  }
 }
 
 const usersService = new UsersService();
