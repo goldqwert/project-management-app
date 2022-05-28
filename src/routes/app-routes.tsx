@@ -1,19 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
-import { Layout } from 'antd';
 
-import { WelcomePage, ErrorPage } from '../pages';
+import { WelcomePage, ErrorPage, SignInPage, SignUpPage } from '../pages';
 
 import './index.scss';
 
 const AppRoutes = () => (
-  <>
-    <Layout className="layout">
-      <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Layout>
-  </>
+  <Routes>
+    <Route path="/" element={<WelcomePage />} />
+    <Route path="/sign-in" element={<SignInPage />} />
+    <Route path="/sign-up" element={<SignUpPage />} />
+    <Route path="*" element={<ErrorPage />} />
+  </Routes>
 );
 
 export default AppRoutes;

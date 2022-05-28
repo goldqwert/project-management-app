@@ -1,4 +1,5 @@
 import { Layout, Carousel, List, Avatar, Descriptions, Button, Divider } from 'antd';
+import { Link } from 'react-router-dom';
 
 import { DEVELOPERS_DATA, DEVELOPER_AVATAR } from '../../constants';
 
@@ -9,6 +10,18 @@ const { Content } = Layout;
 const WelcomePage = () => (
   <Content className="welcome">
     <div className="welcome__content">
+      {/* TODO IS AUTH */}
+      {true && (
+        <div className="welcome__auth">
+          <Button type="primary">
+            <Link to="/sign-in">Sign In</Link>
+          </Button>
+          <Button type="primary">
+            <Link to="/sign-up"> Sign Up</Link>
+          </Button>
+        </div>
+      )}
+      <Divider />
       <Carousel>
         <div className="welcome__slide">
           <h3 className="welcome__title">Project Management App</h3>

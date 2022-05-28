@@ -1,5 +1,5 @@
-import { Layout, Result, Button } from 'antd';
-import { Link } from 'react-router-dom';
+import { Layout, Result } from 'antd';
+import { ButtonGoHome } from '../../components';
 
 import './index.scss';
 
@@ -11,11 +11,7 @@ const ErrorPage = () => (
       status="404"
       title="404"
       subTitle="Sorry, the page you visited does not exist."
-      extra={
-        <Button type="link">
-          <Link to="/">Go to home</Link>
-        </Button>
-      }
+      extra={<ButtonGoHome />}
     />
   </Content>
 );

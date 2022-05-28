@@ -1,8 +1,8 @@
 import { Component, ErrorInfo } from 'react';
-import { Link } from 'react-router-dom';
-import { Result, Button } from 'antd';
+import { Result } from 'antd';
 
 import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
+import ButtonGoHome from '../button-go-home';
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
@@ -24,15 +24,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
     if (hasError) {
       return (
-        <Result
-          status="error"
-          subTitle="Sorry, something went wrong."
-          extra={
-            <Button type="link">
-              <Link to="/">Go to home</Link>
-            </Button>
-          }
-        />
+        <Result status="error" subTitle="Sorry, something went wrong." extra={<ButtonGoHome />} />
       );
     }
 
