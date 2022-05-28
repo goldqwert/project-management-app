@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 
 import { AuthState, AuthUserData } from './types';
 
-const initialState: AuthState = { authToken: null, authUserId: null };
+const initialState: AuthState = { authToken: null, authUserId: null, isAuth: false };
 
 // const signInAsync = createAsyncThunk(
 //   'search/get',
@@ -39,6 +39,15 @@ const authSlice = createSlice({
     setAuthToken: (state, action: PayloadAction<string>) => {
       state.authToken = action.payload;
       state.authUserId = jwt_decode<AuthUserData>(action.payload).userId;
+      state.isAuth = true;
+    },
+    setIsAuth: (state, action: PayloadAction<boolean>) => {
+      state.isAuth = action.payload;
+    },
+    logout: (state) => {
+      state.authToken = null;
+      state.authUserId = null;
+      state.isAuth = false;
     },
   },
   extraReducers: {
@@ -55,7 +64,7 @@ const authSlice = createSlice({
   },
 });
 
-const { setAuthToken } = authSlice.actions;
+const { setAuthToken, setIsAuth, logout } = authSlice.actions;
 const authReducer = authSlice.reducer;
 
-export { authReducer, setAuthToken };
+export { authReducer, setAuthToken, setIsAuth, logout };

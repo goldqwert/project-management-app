@@ -1,8 +1,11 @@
 import { Component, ErrorInfo } from 'react';
-import { Result } from 'antd';
+import { Typography } from 'antd';
 
 import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
-import ButtonGoHome from '../button-go-home';
+
+import './index.scss';
+
+const { Title } = Typography;
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
@@ -24,7 +27,9 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
     if (hasError) {
       return (
-        <Result status="error" subTitle="Sorry, something went wrong." extra={<ButtonGoHome />} />
+        <div className="boundary">
+          <Title level={3}>Sorry, something went wrong.</Title>
+        </div>
       );
     }
 

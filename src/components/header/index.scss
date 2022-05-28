@@ -13,16 +13,25 @@
 
   &__not-sticky {
     &.ant-layout-header {
-      height: 78px;
       background: $white;
+      height: 78px;
+
+      @media (max-width: 740px) {
+        height: 160px;
+      }
     }
   }
 
   &__sticky {
     &.ant-layout-header {
-      height: 78px;
       background: $blue-black;
       color: $milk;
+
+      height: 78px;
+
+      @media (max-width: 740px) {
+        height: 160px;
+      }
     }
   }
 
@@ -31,5 +40,12 @@
     display: flex;
     align-items: center;
     margin: 0 0 0 auto;
+
+    @media (max-width: 740px) {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
   }
 }

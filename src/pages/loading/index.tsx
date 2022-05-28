@@ -1,5 +1,4 @@
-import { Typography } from 'antd';
-import { Spin } from 'antd';
+import { Spin, Typography } from 'antd';
 
 import './index.scss';
 
@@ -7,7 +6,7 @@ const { Title } = Typography;
 
 const LoadingPage = () => (
   <div className="loading">
-    <Title>Loading... Please wait</Title>
+    <Title level={3}>Loading...</Title>
     <Spin />
   </div>
 );

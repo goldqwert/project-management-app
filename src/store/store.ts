@@ -9,15 +9,14 @@ import {
   PURGE,
   REGISTER,
 } from 'reduxjs-toolkit-persist';
-import storage from 'reduxjs-toolkit-persist/lib/storage';
-import autoMergeLevel1 from 'reduxjs-toolkit-persist/lib/stateReconciler/autoMergeLevel1';
+import { CookieStorage } from 'redux-persist-cookie-storage';
+import { Cookies } from 'typescript-cookie';
 
 import { authReducer } from './reducers';
 
 const persistConfig = {
   key: 'root',
-  storage: storage,
-  stateReconciler: autoMergeLevel1,
+  storage: new CookieStorage(Cookies),
 };
 
 const rootReducer = combineReducers({ auth: authReducer });

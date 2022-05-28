@@ -1,6 +1,7 @@
 interface AuthState {
   authToken: null | string;
   authUserId: null | string;
+  isAuth: boolean;
 }
 
 interface AuthUserData {

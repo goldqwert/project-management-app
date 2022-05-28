@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import { Layout, Button } from 'antd';
 
 import './index.scss';
-import ErrorBoundary from 'antd/lib/alert/ErrorBoundary';
+
+import { useAppDispatch } from '../../hooks';
+import { logout } from '../../store';
 
 const { Header: HeaderComponent } = Layout;
 
 const Header = () => {
+  const dispatch = useAppDispatch();
   const [sticky, setSticky] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -21,18 +24,25 @@ const Header = () => {
 
   const handleScroll = () => setSticky(window.pageYOffset !== 0);
 
+  const onLogout = () => dispatch(logout());
+
   return (
     <HeaderComponent
       ref={headerRef}
       className={`header ${sticky ? 'header__sticky' : 'header__not-sticky'}`}
     >
-      <ErrorBoundary></ErrorBoundary>
       <div className="header__links">
         <Button type="link">
-          <Link to="/">Sign In</Link>
+          <Link to="/">Edit profile</Link>
+        </Button>
+        <Button type="link" onClick={onLogout}>
+          <Link to="/">Sign Out</Link>
         </Button>
         <Button type="link">
-          <Link to="/">Sign Up</Link>
+          <Link to="/">Create new board</Link>
+        </Button>
+        <Button type="link">
+          <Link to="/">тогглер / select локализации</Link>
         </Button>
       </div>
     </HeaderComponent>

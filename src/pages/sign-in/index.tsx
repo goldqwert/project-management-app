@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { Layout, Form, Divider, Typography, Input, Button } from 'antd';
 import { LockOutlined, LaptopOutlined } from '@ant-design/icons';
 
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ButtonGoHome } from '../../components';
 import { authService } from '../../api';
 
@@ -18,8 +18,13 @@ const { Title } = Typography;
 const SignInPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
   const [isSignInLoading, setIsSignInLoading] = useState(false);
   const [isSignInDisabled, setIsSignInDisabled] = useState(false);
+
+  if (isAuth) {
+    return <Navigate replace to="/main" />;
+  }
 
   const onFinish = async (values: ISignInData) => {
     setIsSignInLoading(true);

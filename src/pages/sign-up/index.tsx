@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Layout, Form, Input, Button, Divider, Typography } from 'antd';
 import { UserOutlined, LockOutlined, LaptopOutlined } from '@ant-design/icons';
 
@@ -8,14 +8,20 @@ import { authService } from '../../api';
 import { getMessageFromError, openNotification } from '../../helpers';
 
 import './index.scss';
+import { useAppSelector } from '../../hooks';
 
 const { Content } = Layout;
 const { Title } = Typography;
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
   const [isSignUpLoading, setIsSignUpLoading] = useState(false);
   const [isSignUpDisabled, setIsSignUpDisabled] = useState(false);
+
+  if (isAuth) {
+    return <Navigate replace to="/main" />;
+  }
 
   const onFinish = async (values: ISignUpData) => {
     setIsSignUpLoading(true);

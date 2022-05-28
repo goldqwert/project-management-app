@@ -1,3 +1,3 @@
-import { authReducer, setAuthToken } from './auth';
+import { authReducer, setAuthToken, setIsAuth, logout } from './auth';
 
-export { authReducer, setAuthToken };
+export { authReducer, setAuthToken, setIsAuth, logout };
