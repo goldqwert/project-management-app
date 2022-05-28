@@ -56,6 +56,7 @@ const SignInPage = () => {
         </div>
         <Divider />
         <Form
+          layout="vertical"
           name="normal_login"
           className="login-form"
           onFinish={onFinish}
@@ -63,6 +64,7 @@ const SignInPage = () => {
           onFieldsChange={onFieldsChange}
         >
           <Form.Item
+            label="Login"
             name="login"
             rules={[
               {
@@ -82,6 +84,7 @@ const SignInPage = () => {
           </Form.Item>
 
           <Form.Item
+            label="Password"
             name="password"
             rules={[
               {

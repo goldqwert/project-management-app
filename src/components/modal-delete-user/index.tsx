@@ -7,7 +7,7 @@ import { getMessageFromError, openNotification } from '../../helpers';
 
 const { confirm } = Modal;
 
-const App = () => {
+const ModalDeleteUser = () => {
   const { cookies, onLogout } = useCookiesStorage(['authUserId', 'authUserToken']);
 
   const showDeleteUserConfirm = () => {
@@ -39,4 +39,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default ModalDeleteUser;

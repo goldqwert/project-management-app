@@ -49,6 +49,7 @@ const EditProfile = () => {
         </div>
         <Divider />
         <Form
+          layout="vertical"
           form={form}
           name="normal_login"
           className="login-form"
@@ -57,6 +58,7 @@ const EditProfile = () => {
           onFieldsChange={onFieldsChange}
         >
           <Form.Item
+            label="Name"
             name="name"
             tooltip="What is your name?"
             rules={[
@@ -76,6 +78,7 @@ const EditProfile = () => {
           </Form.Item>
 
           <Form.Item
+            label="Login"
             name="login"
             rules={[
               {
@@ -95,6 +98,7 @@ const EditProfile = () => {
           </Form.Item>
 
           <Form.Item
+            label="Password"
             name="password"
             rules={[
               {

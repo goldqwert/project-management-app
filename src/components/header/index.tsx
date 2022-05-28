@@ -4,6 +4,7 @@ import { Layout, Button } from 'antd';
 import './index.scss';
 
 import { useCookiesStorage, useStickyHeader } from '../../hooks';
+import ModalCreateBoard from '../modal-create-board';
 
 const { Header: HeaderComponent } = Layout;
 
@@ -26,9 +27,7 @@ const Header = () => {
         <Button type="link" onClick={logout}>
           <Link to="/">Sign Out</Link>
         </Button>
-        <Button type="link">
-          <Link to="/">Create new board</Link>
-        </Button>
+        <ModalCreateBoard />
         <Button type="link">
           <Link to="/">тогглер / select локализации</Link>
         </Button>

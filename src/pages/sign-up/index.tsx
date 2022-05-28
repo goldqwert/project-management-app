@@ -49,6 +49,7 @@ const SignUpPage = () => {
         </div>
         <Divider />
         <Form
+          layout="vertical"
           name="normal_login"
           className="login-form"
           onFinish={onFinish}
@@ -56,6 +57,7 @@ const SignUpPage = () => {
           onFieldsChange={onFieldsChange}
         >
           <Form.Item
+            label="Name"
             name="name"
             tooltip="What is your name?"
             rules={[
@@ -75,6 +77,7 @@ const SignUpPage = () => {
           </Form.Item>
 
           <Form.Item
+            label="Login"
             name="login"
             rules={[
               {
@@ -94,6 +97,7 @@ const SignUpPage = () => {
           </Form.Item>
 
           <Form.Item
+            label="Password"
             name="password"
             rules={[
               {
