@@ -1,0 +1,22 @@
+@import '../../scss/_variables.scss';
+
+.edit-profile {
+  margin: 78px 0 0 0;
+  padding: 0 50px;
+
+  @media (max-width: 740px) {
+    margin: 160px 0 0 0;
+  }
+
+  &__content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__delete-account {
+    max-width: 120px;
+    height: 32px;
+  }
+}

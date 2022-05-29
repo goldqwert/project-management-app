@@ -1,0 +1,17 @@
+@import '../../scss/_variables.scss';
+
+.sign-up {
+  padding: 0 50px;
+
+  &__content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__go-home {
+    max-width: 79px;
+    height: 32px;
+  }
+}

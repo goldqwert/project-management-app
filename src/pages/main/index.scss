@@ -1,0 +1,39 @@
+@import '../../scss/_variables.scss';
+
+.main {
+  padding: 0 50px;
+  margin: 78px 0 0 0;
+  background: $white;
+
+  @media (max-width: 740px) {
+    margin: 160px 0 0 0;
+    padding: 0;
+  }
+
+  &__content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    text-align: center;
+    background: $blue;
+    padding: 20px;
+
+    @media (max-height: 480px) {
+      height: 200px;
+      line-height: 200px;
+    }
+  }
+
+  &__text {
+    word-break: break-word;
+  }
+}
