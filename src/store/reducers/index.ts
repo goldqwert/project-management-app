@@ -1,3 +1,3 @@
-import { authReducer, setAuthToken, setIsAuth, logout } from './auth';
+import { boardsReducer, createNewBoard, getBoardsAsync, deleteBoard } from './boards';
 
-export { authReducer, setAuthToken, setIsAuth, logout };
+export { boardsReducer, createNewBoard, getBoardsAsync, deleteBoard };

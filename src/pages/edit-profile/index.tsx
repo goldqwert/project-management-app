@@ -8,13 +8,13 @@ import { usersService } from '../../api';
 
 import './index.scss';
 import { getMessageFromError, openNotification } from '../../helpers';
-import { ModalDeleteUser } from '../../components';
+import { ModalConfirmation } from '../../components';
 
 const { Content } = Layout;
 const { Title } = Typography;
 
 const EditProfile = () => {
-  const { cookies } = useCookiesStorage(['authToken', 'authUserId']);
+  const { cookies, onLogout } = useCookiesStorage(['authToken', 'authUserId']);
   const [isEditProfileLoading, setIsEditProfileLoading] = useState(false);
   const [isEditProfileDisabled, setIsEditProfileDisabled] = useState(false);
 
@@ -36,6 +36,16 @@ const EditProfile = () => {
     }
   };
 
+  const onDeleteUser = async () => {
+    try {
+      await usersService.deleteUser(cookies.authUserId, cookies.authToken);
+      openNotification('success', 'User succesfully deleted');
+      onLogout();
+    } catch (error) {
+      openNotification('error', getMessageFromError(error));
+    }
+  };
+
   const onFinishFailed = () => setIsEditProfileDisabled(true);
 
   const onFieldsChange = () => setIsEditProfileDisabled(false);
@@ -45,7 +55,11 @@ const EditProfile = () => {
       <div className="edit-profile__content">
         <Title>Edit profile</Title>
         <div className="edit-profile__delete-account">
-          <ModalDeleteUser />
+          <ModalConfirmation
+            title="Do you want to delete this user?"
+            description="All data of this user will be permanently deleted"
+            onOk={onDeleteUser}
+          />
         </div>
         <Divider />
         <Form

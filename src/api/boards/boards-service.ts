@@ -41,6 +41,24 @@ class BoardsService {
 
     throw new Error(data.message);
   }
+
+  async deleteBoard(boardId: string, token: string) {
+    const response = await fetch(`${this.boardsUrl}/${boardId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+      },
+    });
+
+    if (response.status === HTTP_STATUS.NO_CONTENT) {
+      return;
+    }
+
+    const data = await response.json();
+
+    throw new Error(data.message);
+  }
 }
 
 const boardsService = new BoardsService();

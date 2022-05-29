@@ -2,7 +2,7 @@ import { Layout, Carousel, List, Avatar, Descriptions, Button, Divider } from 'a
 import { useCookies } from 'react-cookie';
 import { Link } from 'react-router-dom';
 
-import { DEVELOPERS_DATA, DEVELOPER_AVATAR } from '../../constants';
+import { DEVELOPERS_DATA } from '../../constants';
 
 import './index.scss';
 
@@ -72,10 +72,10 @@ const WelcomePage = () => {
             header={<h3>Team</h3>}
             bordered
             dataSource={DEVELOPERS_DATA}
-            renderItem={({ name, github }) => (
+            renderItem={({ name, github, avatar }) => (
               <List.Item>
                 <List.Item.Meta
-                  avatar={<Avatar src={DEVELOPER_AVATAR} />}
+                  avatar={<Avatar src={avatar} />}
                   title={
                     <a href={github} target="_blank" rel="noreferrer">
                       {name}

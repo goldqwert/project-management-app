@@ -12,14 +12,14 @@ import {
 import { CookieStorage } from 'redux-persist-cookie-storage';
 import { Cookies } from 'typescript-cookie';
 
-import { authReducer } from './reducers';
+import { boardsReducer } from './reducers';
 
 const persistConfig = {
   key: 'root',
   storage: new CookieStorage(Cookies),
 };
 
-const rootReducer = combineReducers({ auth: authReducer });
+const rootReducer = combineReducers({ boards: boardsReducer });
 
 const _persistedReducer = persistReducer(persistConfig, rootReducer as Reducer);
 

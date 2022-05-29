@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Modal, Form, Input } from 'antd';
 
-import { useCookiesStorage } from '../../hooks';
+import { useAppDispatch, useCookiesStorage } from '../../hooks';
 import { boardsService } from '../../api';
 import { getMessageFromError, openNotification } from '../../helpers';
+import { createNewBoard, getBoardsAsync } from '../../store';
 
 const ModalCreateBoard = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { cookies } = useCookiesStorage(['authToken']);
   const [isVisible, setIsVisible] = useState(false);
   const [isCreateLoading, setIsCreateLoading] = useState(false);
@@ -16,6 +18,8 @@ const ModalCreateBoard = () => {
     setIsCreateLoading(true);
     try {
       await boardsService.createBoard(cookies.authToken, values);
+      dispatch(createNewBoard(values));
+      dispatch(getBoardsAsync(cookies.authToken));
       openNotification('success', 'Board successfully created!');
       navigate('/main');
     } catch (error) {

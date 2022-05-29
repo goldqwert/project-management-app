@@ -17,6 +17,12 @@
     justify-content: center;
   }
 
+  &__welcome {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+  }
+
   &__slide {
     display: flex;
     flex-direction: column;
@@ -33,7 +39,7 @@
     }
   }
 
-  &__text {
+  &__card-text {
     word-break: break-word;
   }
 }

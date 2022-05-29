@@ -1,6 +1,6 @@
-import { setAuthToken, setIsAuth, logout } from './reducers';
+import { createNewBoard, getBoardsAsync, deleteBoard } from './reducers';
 import { store, persistor } from './store';
 import { RootState, AppDispatch } from './types';
 
 export type { RootState, AppDispatch };
-export { store, persistor, setAuthToken, setIsAuth, logout };
+export { store, persistor, createNewBoard, getBoardsAsync, deleteBoard };
