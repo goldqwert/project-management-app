@@ -39,7 +39,7 @@ const ModalCreateBoard = () => {
   const [form] = Form.useForm();
 
   return (
-    <div>
+    <>
       <Button type="link" onClick={openModal}>
         Create new board
       </Button>
@@ -95,7 +95,7 @@ const ModalCreateBoard = () => {
           </Form.Item>
         </Form>
       </Modal>
-    </div>
+    </>
   );
 };
 
