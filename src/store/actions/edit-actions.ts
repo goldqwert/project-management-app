@@ -1,28 +1,17 @@
 import axios from 'axios'
 import { showError } from '../slices/edit-slice'
 import { getTokenFromCookie } from '../../common/helper'
+import HttpService from '../../services/http-service'
 
-export const editProfileData = (editData, userId) => {
+export const editProfileData = (user: UserType) => {
     return async (dispatch) => {
         dispatch(showError(null))
         const sendEditData = async () => {
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    Authorization: `Bearer ${getTokenFromCookie()}`,
-                },
-            }
-            const response = await axios.put(
-                `https://fathomless-savannah-49484.herokuapp.com/users/${userId}`,
-                editData,
-                options
-            )
+            const response = await HttpService.updateUser(user)
             if (!response) {
-                throw new Error('Something went wrong!')
+                throw new Error('User not update')
             }
-            const { data } = response
-            return data
+            return response
         }
         try {
             await sendEditData()

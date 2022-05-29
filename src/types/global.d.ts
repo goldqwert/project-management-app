@@ -43,6 +43,11 @@ declare global {
     }
 
     type Token = {
-      token: string
+        token: string
+    }
+
+    type HttpError ={
+      statusCode: number,
+      message: string
     }
 }

@@ -1,33 +1,22 @@
 import axios from 'axios'
 import { setCookie } from 'typescript-cookie'
 import { showError, getUserData } from '../slices/signUp-slice'
+import HttpService from '../../services/http-service'
 
 export let savedData
 
-export const sendingFormSignUp = (signUpData) => {
+export const sendingFormSignUp = (signUpData: Omit<UserType, 'id'>) => {
     return async (dispatch) => {
         dispatch(showError(null))
         const sendRequest = async () => {
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                },
-            }
-            const response = await axios.post(
-                'https://fathomless-savannah-49484.herokuapp.com/signup',
-                signUpData,
-                options
-            )
-
+            const response = await HttpService.signup(signUpData)
             console.log(response, signUpData)
             if (!response) {
-                throw new Error(`${response.data.message}`)
+                throw new Error('Bad user credentials')
             }
-            // data хранит {id, login, name}
-            const data = await response.data
-            savedData = setCookie('id', data.id, { expires: 1 })
-            return data
+
+            savedData = setCookie('id', response.id, { expires: 1 })
+            return response
         }
         try {
             const allData = await sendRequest()

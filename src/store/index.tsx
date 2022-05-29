@@ -17,7 +17,7 @@ import signInData from './slices/signin-slice'
 import logout from './slices/logout-slice'
 import edit from './slices/edit-slice'
 import deleteUser from './slices/deleteUser-slice'
-import newBoard from './slices/board-slice'
+import content from './slices/ContentSlice'
 
 const rootReducer = combineReducers({
     signUp: signUpData,
@@ -25,7 +25,7 @@ const rootReducer = combineReducers({
     logout,
     edit,
     delete: deleteUser,
-    board: newBoard,
+    content
 })
 const persistConfig = {
     key: 'root',

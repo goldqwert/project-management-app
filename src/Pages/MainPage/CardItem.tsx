@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Card, Button } from 'antd'
 import Modal from '../../components/Modal/Modal'
 import deleteBoard from '../../store/actions/deleteBoard-actions'
-import { removeBoard } from '../../store/slices/board-slice'
+import { removeBoard } from '../../store/slices/ContentSlice'
 import { dispatchStore, RootState } from '../../types/types'
 
 const CardItem = (props) => {

@@ -21,14 +21,9 @@ const LoginContainer = () => {
         reset,
     } = useForm<LoginState>({ mode: 'onChange' })
 
-    let formSignInData = {}
     const handleFormSubmit = () => {
         reset()
-        formSignInData = {
-            login,
-            password,
-        }
-        dispatchStore(sendingSignInData(formSignInData))
+        dispatchStore(sendingSignInData({ login, password }))
         navigate('/main')
     }
     return (

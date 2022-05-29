@@ -2,28 +2,18 @@ import axios from 'axios'
 import { getCookie, setCookie } from 'typescript-cookie'
 import { getToken, showError } from '../slices/signin-slice'
 import { getTokenFromCookie } from '../../common/helper'
+import HttpService from '../../services/http-service'
 
-export const sendingSignInData = (signInData) => {
+export const sendingSignInData = (signInData: Pick<UserType, 'login' | 'password'>) => {
     return async (dispatch) => {
         dispatch(showError(null))
         const sendRequestSignIn = async () => {
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${getTokenFromCookie()}`,
-                    'Access-Control-Allow-Origin': '*',
-                },
-            }
-            const response = await axios.post(
-                'https://fathomless-savannah-49484.herokuapp.com/signin',
-                signInData,
-                options
-            )
+            const response = await HttpService.signin(signInData)
             if (!response) {
-                throw new Error(response.data?.message)
+                throw new Error('Bad token recieved')
             }
 
-            const { token } = response.data
+            const { token } = response
             setCookie('jwt', token, { expires: 1 })
             dispatch(getToken(token))
             return token

@@ -14,20 +14,14 @@ const EditProfileContainer = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const userId = getCookie('id')
+    const id = getCookie('id')
     const { name, login, password } = useSelector((state: RootState) => state.edit)
 
-    const onFinish = () => {
-        const userData = {
-            name,
-            login,
-            password,
-        }
-        dispatchStore(editProfileData(userData, userId))
-    }
+    const onFinish = () => dispatchStore(editProfileData({ name, login, password, id } as UserType))
+
     const deleteUserModalHandler = () => {
-        dispatchStore(deleteUserProfile(userId))
-        dispatch(deleteUser(userId))
+        dispatchStore(deleteUserProfile(id))
+        dispatch(deleteUser(id))
         dispatchStore(getToken(''))
         navigate('/')
     }

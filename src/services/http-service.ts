@@ -1,7 +1,8 @@
 import { LOCAL_SERVER, REMOTE_SERVER, DEFAULT_COLUMNS } from '../common/constants'
 import { getTokenFromCookie } from '../common/helper'
 
-const SERVER_URL = process.env.NODE_ENV === 'production' ? REMOTE_SERVER : LOCAL_SERVER
+// const SERVER_URL = process.env.NODE_ENV === 'production' ? REMOTE_SERVER : LOCAL_SERVER
+const SERVER_URL = LOCAL_SERVER
 
 class HttpService {
     static async getUsers(): Promise<Omit<UserType, 'password'>[]> {
@@ -40,57 +41,55 @@ class HttpService {
         }
     }
 
-    static async updateUser(
-      user: UserType
-  ): Promise<Omit<UserType, 'password'>> {
-      try {
-          const { id, name, login, password } = user
-          const response = await fetch(`${SERVER_URL}users/${id}`, {
-              method: 'PUT',
-              headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${getTokenFromCookie()}`,
-              },
-              body: JSON.stringify({ name, login,password }),
-          })
-          return response.json()
-      } catch (error) {
-          throw new Error('Error fetching Updated User from server')
-      }
-  }
-
-  static async signin(login:string,password:string): Promise<Token> {
-    try {
-        const response = await fetch(`${SERVER_URL}signin`, {
-            method: 'POST',
-            body: JSON.stringify({login,password}),
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-          },
-        })
-        return response.json()
-    } catch (error) {
-        throw new Error('Error fetching Post signin')
+    static async updateUser(user: UserType): Promise<Omit<UserType, 'password'>> {
+        try {
+            const { id, name, login, password } = user
+            const response = await fetch(`${SERVER_URL}users/${id}`, {
+                method: 'PUT',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${getTokenFromCookie()}`,
+                },
+                body: JSON.stringify({ name, login, password }),
+            })
+            return response.json()
+        } catch (error) {
+            throw new Error('Error fetching Updated User from server')
+        }
     }
-}
 
-static async signup(user:Omit<UserType, 'id'>): Promise<Omit<UserType, 'password'>> {
-  try {
-      const response = await fetch(`${SERVER_URL}signup`, {
-          method: 'POST',
-          body: JSON.stringify(user),
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        },
-      })
-      return response.json()
-  } catch (error) {
-      throw new Error('Error fetching Post signup')
-  }
-}
+    static async signin(user: Pick<UserType, 'login' | 'password'>): Promise<Token> {
+        try {
+            const response = await fetch(`${SERVER_URL}signin`, {
+                method: 'POST',
+                body: JSON.stringify(user),
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+            return response.json()
+        } catch (error) {
+            throw new Error('Error fetching Post signin')
+        }
+    }
+
+    static async signup(user: Omit<UserType, 'id'>): Promise<Omit<UserType, 'password'>> {
+        try {
+            const response = await fetch(`${SERVER_URL}signup`, {
+                method: 'POST',
+                body: JSON.stringify(user),
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            })
+            return response.json()
+        } catch (error) {
+            throw new Error('Error fetching Post signup')
+        }
+    }
 
     static async getBoards(): Promise<Omit<BoardType, 'columns'>[]> {
         try {
@@ -136,7 +135,9 @@ static async signup(user:Omit<UserType, 'id'>): Promise<Omit<UserType, 'password
         }
     }
 
-    static async createBoard(board: Omit<BoardType, 'id | columns'>): Promise<Omit<BoardType, 'columns'>> {
+    static async createBoard(
+        board: Omit<BoardType, 'id | columns'>
+    ): Promise<Omit<BoardType, 'columns'>> {
         try {
             const { title, description } = board
             const boardResponse = await fetch(`${SERVER_URL}boards`, {
@@ -195,10 +196,7 @@ static async signup(user:Omit<UserType, 'id'>): Promise<Omit<UserType, 'password
         }
     }
 
-    static async getColumn(
-        boardId: string,
-        columnId: string
-    ): Promise<ColumnType[]> {
+    static async getColumn(boardId: string, columnId: string): Promise<ColumnType[]> {
         try {
             const response = await fetch(`${SERVER_URL}boards/${boardId}/columns/${columnId}`, {
                 method: 'GET',
@@ -293,7 +291,9 @@ static async signup(user:Omit<UserType, 'id'>): Promise<Omit<UserType, 'password
         }
     }
 
-    static async createTask(task: Omit<TaskType, 'id | files | order'>): Promise<Pick<TaskType,  'id' | 'title' | 'description' | 'userId'>> {
+    static async createTask(
+        task: Omit<TaskType, 'id | files | order'>
+    ): Promise<Pick<TaskType, 'id' | 'title' | 'description' | 'userId'>> {
         try {
             const { title, description, userId, boardId, columnId } = task
             const response = await fetch(

@@ -1,29 +1,18 @@
 import axios from 'axios'
 import { showError, deleteUser } from '../slices/deleteUser-slice'
 import { getTokenFromCookie } from '../../common/helper'
+import HttpService from '../../services/http-service'
 
-export const deleteUserProfile = (userId) => {
+export const deleteUserProfile = (userId:string) => {
     return async (dispatch) => {
         dispatch(showError(null))
         const deleteDataUser = async () => {
-            const options = {
-                headers: {
-                    Accept: '*/*',
-                    Authorization: `Bearer ${getTokenFromCookie()}`,
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                },
-            }
-            const response = await axios.delete(
-                `https://fathomless-savannah-49484.herokuapp.com/users/${userId}`,
-                options
-            )
+            const response = await HttpService.deleteUser(userId)
             console.log(response)
             if (!response) {
                 throw new Error('Something went wrong!')
             }
-            const data = await response.data
-            return data
+            return response
         }
         try {
             await deleteDataUser()

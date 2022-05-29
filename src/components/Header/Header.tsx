@@ -7,7 +7,7 @@ import Modal from '../Modal/Modal'
 import { dispatchStore, RootState } from '../../types/types'
 import { clearUserData } from '../../store/slices/logout-slice'
 import getNewBoard from '../../store/actions/newBoard-actions'
-import { createNewBoardTitle, createNewBoardDescription } from '../../store/slices/board-slice'
+import { createNewBoardTitle, createNewBoardDescription } from '../../store/slices/ContentSlice'
 
 const { Header } = Layout
 
@@ -34,11 +34,7 @@ const HeaderMenu = () => {
         setShowNewBoardModal(false)
     }
     const createBoardSubmit = () => {
-        const boardData = {
-            title,
-            description,
-        }
-        dispatchStore(getNewBoard(boardData))
+        dispatchStore(getNewBoard({ title, description } as Omit<BoardType, 'id | columns'>))
         setShowNewBoardModal(false)
     }
     const menuItems: ItemType[] = [
