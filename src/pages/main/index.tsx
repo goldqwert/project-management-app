@@ -41,7 +41,7 @@ const MainPage = () => {
             <List.Item actions={[<a key="list-loadmore-edit">view</a>]}>
               <List.Item.Meta
                 title={<p className="main__text">{title}</p>}
-                description={<p className="main__text">description</p>}
+                description={<p className="main__text">{description}</p>}
               />
             </List.Item>
           )}
