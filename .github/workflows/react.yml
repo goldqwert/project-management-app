@@ -1,4 +1,4 @@
-name: Ract CI/CD
+name: React CI/CD
 
 on:
   push:
