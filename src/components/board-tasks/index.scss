@@ -1,4 +1,5 @@
 @import '../../scss/variables';
+@import '../../scss/mixins';
 
 .board-tasks {
   display: flex;
@@ -14,14 +15,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-
-  &__item {
-    padding: 8px;
-    background: $white;
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
   }
 
   &__description {

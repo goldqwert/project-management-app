@@ -8,4 +8,11 @@ interface BoardColumnsTaskCreate {
   description: string;
 }
 
-export type { BoardTasksProps, BoardColumnsTaskCreate };
+interface EditTask {
+  id: string;
+  title: string;
+  description: string;
+  order: number;
+}
+
+export type { BoardTasksProps, BoardColumnsTaskCreate, EditTask };
