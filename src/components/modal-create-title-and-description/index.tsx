@@ -70,7 +70,7 @@ const ModalCreateTitleAndDescription = ({
           </Form.Item>
           <Form.Item
             name="description"
-            label="Description"
+            label={t('description')}
             rules={[
               {
                 required: true,

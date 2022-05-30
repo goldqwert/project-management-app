@@ -29,7 +29,7 @@
   "view": "Смотреть",
   "goToHome": "Вернуться",
   "sorrySomethingWrong": "Извините, что-то пошло не так.",
-  "yuryKalenkou": "Юрий Каленков",
+  "yuryKalenkou": "Юрий Коленьков",
   "kseniyaKlimova": "Ксения Климова",
   "aliaksandrHalaveika": "Александр Головейко",
   "deleteUser": "Удалить пользователя",
@@ -80,5 +80,8 @@
   "team": "Команда",
   "columnDelete": "Удалить колонку",
   "boardInfo": "Инфо о борде",
-  "systemId": "Системный ид"
+  "systemId": "Системный ид",
+  "createColumn": "Создать колонку",
+  "description": "Описание",
+  "boardSuccess": "Борда успешно создана!"
 }

@@ -47,7 +47,7 @@ const ModalCreateColumn = ({ boardId }: ModalCreateColumnProps) => {
   return (
     <>
       <Button type="primary" onClick={openModal}>
-        Create column
+        {t('createColumn')}
       </Button>
       <Modal
         visible={isVisible}
