@@ -1,0 +1,58 @@
+@import '../../scss/_variables.scss';
+
+.welcome {
+  padding: 0 50px;
+
+  &__with-header {
+    margin: 78px 0 0 0;
+
+    @media (max-width: 740px) {
+      margin: 160px 0 0 0;
+      padding: 0;
+    }
+  }
+
+  &__content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__auth {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+  }
+
+  &__slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    text-align: center;
+    background: $blue;
+    padding: 20px;
+
+    @media (max-height: 480px) {
+      height: 200px;
+      line-height: 200px;
+    }
+  }
+
+  &__title,
+  &__text {
+    color: $white;
+  }
+
+  &__btns {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    @media (max-width: 650px) {
+      flex-direction: column;
+    }
+  }
+}

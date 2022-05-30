@@ -1,0 +1,44 @@
+@import '../../scss/_variables.scss';
+
+.boards {
+  padding: 0 50px;
+  margin: 78px 0 0 0;
+  background: $white;
+
+  @media (max-width: 740px) {
+    margin: 160px 0 0 0;
+    padding: 0;
+  }
+
+  &__content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__welcome {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    text-align: center;
+    background: $blue;
+    padding: 20px;
+
+    @media (max-height: 480px) {
+      height: 200px;
+      line-height: 200px;
+    }
+  }
+
+  &__card-text {
+    word-break: break-word;
+  }
+}
