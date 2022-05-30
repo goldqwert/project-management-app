@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { ErrorBoundary } from './components';
 import { store } from './store';
-import App from './app';
+import App from './App';
 
 import './i18n';
 
