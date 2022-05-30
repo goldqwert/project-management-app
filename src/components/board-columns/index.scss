@@ -1,4 +1,5 @@
 @import '../../scss/variables';
+@import '../../scss/mixins';
 
 .board-columns {
   display: inline-flex;
@@ -7,6 +8,7 @@
 
   &__item {
     min-width: 266px;
+    width: 266px;
     display: flex;
     flex-direction: column;
   }
@@ -27,7 +29,21 @@
     text-align: center;
     word-wrap: break-word;
     max-width: 95%;
+    cursor: pointer;
+
+    @include hover;
   }
 
+  &__edit {
+    display: flex;
+  }
 
+  &__title-edit {
+    align-self: flex-start;
+    max-width: 150px;
+  }
+
+  &__title-btns {
+    display: flex;
+  }
 }

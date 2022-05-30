@@ -7,6 +7,7 @@ import ModalConfirmation from './modal-confirmation';
 import BoardColumns from './board-columns';
 import BoardTasks from './board-tasks';
 import ModalCreateTitleAndDescription from './modal-create-title-and-description';
+import BoardColumnTitle from './board-column-title';
 
 export {
   ErrorBoundary,
@@ -18,4 +19,5 @@ export {
   ModalCreateTitleAndDescription,
   BoardColumns,
   BoardTasks,
+  BoardColumnTitle,
 };
