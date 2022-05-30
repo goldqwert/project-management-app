@@ -1,6 +1,23 @@
-import { createNewBoard, getBoardsAsync, deleteBoard } from './reducers';
-import { store, persistor } from './store';
+import {
+  createNewBoard,
+  deleteBoard,
+  setBoardDetails,
+  setColumns,
+  getBoardsAsync,
+  getBoardDetailsAsync,
+  getBoardsColumnsAsync,
+} from './reducers';
+import store from './store';
 import { RootState, AppDispatch } from './types';
 
 export type { RootState, AppDispatch };
-export { store, persistor, createNewBoard, getBoardsAsync, deleteBoard };
+export {
+  store,
+  createNewBoard,
+  deleteBoard,
+  setBoardDetails,
+  setColumns,
+  getBoardsAsync,
+  getBoardDetailsAsync,
+  getBoardsColumnsAsync,
+};

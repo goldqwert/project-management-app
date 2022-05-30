@@ -24,7 +24,7 @@ const SignInPage = () => {
   const [isSignInDisabled, setIsSignInDisabled] = useState(false);
 
   if (cookies.authToken) {
-    return <Navigate replace to="/main" />;
+    return <Navigate replace to="/boards" />;
   }
 
   const onFinish = async (values: ISignInData) => {
@@ -34,12 +34,11 @@ const SignInPage = () => {
       openNotification('success', 'You are successfully logged!');
       setCookie('authToken', token);
       setCookie('authUserId', jwt_decode<AuthUserData>(token).userId);
-      navigate('/main');
-
-      setIsSignInLoading(false);
+      navigate('/boards');
     } catch (error) {
-      setIsSignInLoading(false);
       openNotification('error', getMessageFromError(error));
+    } finally {
+      setIsSignInLoading(false);
     }
   };
 

@@ -18,7 +18,7 @@ const WelcomePage = () => {
           <div className="welcome__auth">
             {cookies.authToken ? (
               <Button type="primary">
-                <Link to="/main">Go to main Page</Link>
+                <Link to="/boards">Go to main Page</Link>
               </Button>
             ) : (
               <>

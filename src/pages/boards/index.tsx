@@ -1,5 +1,5 @@
 import { useEffect, MouseEvent } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button, Card, Divider, Layout, List, Modal } from 'antd';
 import { DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 
@@ -13,7 +13,8 @@ import { getMessageFromError, openNotification } from '../../helpers';
 const { Content } = Layout;
 const { confirm } = Modal;
 
-const MainPage = () => {
+const BoardsPage = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const boards = useAppSelector((state) => state.boards.boards);
   const { cookies } = useCookiesStorage(['authToken']);
@@ -21,10 +22,8 @@ const MainPage = () => {
   useAuth();
 
   useEffect(() => {
-    getBoards();
+    dispatch(getBoardsAsync(cookies.authToken));
   }, []);
-
-  const getBoards = async () => dispatch(getBoardsAsync(cookies.authToken));
 
   const onOkDeleteBoard = async (boardId: string) => {
     try {
@@ -34,10 +33,6 @@ const MainPage = () => {
     } catch (error) {
       openNotification('error', getMessageFromError(error));
     }
-  };
-
-  const onOpenBoard = () => {
-    console.log('openBoard');
   };
 
   const onDeleteBoard = (e: MouseEvent<HTMLSpanElement>, boardId: string) => {
@@ -51,16 +46,18 @@ const MainPage = () => {
     });
   };
 
+  const onOpenBoard = (boardId: string) => navigate(`/boards/${boardId}`);
+
   if (!cookies.authToken) {
     return <Navigate replace to="/" />;
   }
 
   return (
-    <Content className="main">
-      <div className="main__content">
-        <div className="main__welcome">
+    <Content className="boards">
+      <div className="boards__content">
+        <div className="boards__welcome">
           <Button type="primary">
-            <Link to="/">Go to welcome Page</Link>
+            <Link to="/">Go to welcome page</Link>
           </Button>
         </div>
 
@@ -78,13 +75,14 @@ const MainPage = () => {
           }}
           dataSource={boards}
           renderItem={({ id, title, description }: IBoard) => (
-            <List.Item onClick={onOpenBoard}>
+            <List.Item>
               <Card
+                onClick={() => onOpenBoard(id)}
                 hoverable
                 title={title}
                 actions={[<DeleteOutlined key="delete" onClick={(e) => onDeleteBoard(e, id)} />]}
               >
-                <p className="main__card-text">{description}</p>
+                <p className="boards__card-text">{description}</p>
               </Card>
             </List.Item>
           )}
@@ -94,4 +92,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default BoardsPage;

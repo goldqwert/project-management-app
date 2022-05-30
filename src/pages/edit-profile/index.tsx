@@ -26,13 +26,12 @@ const EditProfile = () => {
     setIsEditProfileLoading(true);
     try {
       await usersService.editUser(cookies.authUserId, cookies.authToken, values);
-
       openNotification('success', 'New user data succesfully saved!');
       form.resetFields();
-      setIsEditProfileLoading(false);
     } catch (error) {
-      setIsEditProfileLoading(false);
       openNotification('error', getMessageFromError(error));
+    } finally {
+      setIsEditProfileLoading(false);
     }
   };
 

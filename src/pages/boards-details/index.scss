@@ -1,0 +1,27 @@
+@import '../../scss/_variables.scss';
+
+.board-details {
+  padding: 0 50px;
+  margin: 78px 0 0 0;
+  background: $white;
+
+  @media (max-width: 740px) {
+    margin: 160px 0 0 0;
+    padding: 0;
+  }
+
+  &__content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  &__btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 20px;
+  }
+}

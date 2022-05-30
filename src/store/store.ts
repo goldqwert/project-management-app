@@ -1,38 +1,11 @@
-import { combineReducers, configureStore, Reducer } from '@reduxjs/toolkit';
-import {
-  persistReducer,
-  persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'reduxjs-toolkit-persist';
-import { CookieStorage } from 'redux-persist-cookie-storage';
-import { Cookies } from 'typescript-cookie';
+import { configureStore } from '@reduxjs/toolkit';
 
 import { boardsReducer } from './reducers';
 
-const persistConfig = {
-  key: 'root',
-  storage: new CookieStorage(Cookies),
-};
-
-const rootReducer = combineReducers({ boards: boardsReducer });
-
-const _persistedReducer = persistReducer(persistConfig, rootReducer as Reducer);
-
 const store = configureStore({
-  reducer: _persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+  reducer: {
+    boards: boardsReducer,
+  },
 });
 
-const persistor = persistStore(store);
-
-export { store, persistor };
+export default store;

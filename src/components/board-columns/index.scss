@@ -1,0 +1,33 @@
+@import '../../scss/variables';
+
+.board-columns {
+  display: inline-flex;
+  column-gap: 20px;
+  overflow-x: scroll;
+
+  &__item {
+    min-width: 266px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item-header {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    background: $milk-2;
+    transition: background-color 0.2s ease;
+  }
+
+  &__title.ant-typography {
+    text-align: center;
+    word-wrap: break-word;
+    max-width: 95%;
+  }
+
+
+}

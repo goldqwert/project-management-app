@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Button, Modal, Form, Input } from 'antd';
 
 import { useAppDispatch, useCookiesStorage } from '../../hooks';
-import { boardsService } from '../../api';
+import { columnsService } from '../../api';
 import { getMessageFromError, openNotification } from '../../helpers';
-import { createNewBoard, getBoardsAsync } from '../../store';
+import { getBoardsColumnsAsync } from '../../store';
+import { ModalCreateColumnProps } from './types';
 
-const ModalCreateBoard = () => {
-  const navigate = useNavigate();
+const ModalCreateColumn = ({ boardId }: ModalCreateColumnProps) => {
   const dispatch = useAppDispatch();
   const { cookies } = useCookiesStorage(['authToken']);
   const [isVisible, setIsVisible] = useState(false);
@@ -17,11 +16,12 @@ const ModalCreateBoard = () => {
   const onCreate = async (values: IBoard) => {
     setIsCreateLoading(true);
     try {
-      await boardsService.createBoard(cookies.authToken, values);
-      dispatch(createNewBoard(values));
-      dispatch(getBoardsAsync(cookies.authToken));
-      openNotification('success', 'Board successfully created!');
-      navigate('/main');
+      await columnsService.createColumn(cookies.authToken, {
+        id: boardId,
+        title: values.title,
+      });
+      dispatch(getBoardsColumnsAsync({ token: cookies.authToken, boardId }));
+      openNotification('success', 'Column successfully created!');
     } catch (error) {
       openNotification('error', getMessageFromError(error));
     } finally {
@@ -44,12 +44,12 @@ const ModalCreateBoard = () => {
 
   return (
     <>
-      <Button type="link" onClick={openModal}>
-        Create new board
+      <Button type="primary" onClick={openModal}>
+        Create column
       </Button>
       <Modal
         visible={isVisible}
-        title="New board"
+        title="New column"
         onCancel={onCancel}
         footer={[
           <Button key="cancel" onClick={onCancel}>
@@ -81,26 +81,10 @@ const ModalCreateBoard = () => {
           >
             <Input />
           </Form.Item>
-          <Form.Item
-            name="description"
-            label="Description"
-            rules={[
-              {
-                required: true,
-                message:
-                  'Description is required and must be at least 3 and no more than 30 symbols',
-                whitespace: true,
-                min: 3,
-                max: 30,
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
         </Form>
       </Modal>
     </>
   );
 };
 
-export default ModalCreateBoard;
+export default ModalCreateColumn;

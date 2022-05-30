@@ -20,7 +20,7 @@ const SignUpPage = () => {
   const [isSignUpDisabled, setIsSignUpDisabled] = useState(false);
 
   if (cookies.authToken) {
-    return <Navigate replace to="/main" />;
+    return <Navigate replace to="/boards" />;
   }
 
   const onFinish = async (values: ISignUpData) => {
@@ -28,11 +28,11 @@ const SignUpPage = () => {
     try {
       await authService.signUp(values);
       openNotification('success', 'User successfully created! You can login!');
-      setIsSignUpLoading(false);
       navigate('/sign-in');
     } catch (error) {
-      setIsSignUpLoading(false);
       openNotification('error', getMessageFromError(error));
+    } finally {
+      setIsSignUpLoading(false);
     }
   };
 

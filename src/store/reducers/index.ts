@@ -1,3 +1,21 @@
-import { boardsReducer, createNewBoard, getBoardsAsync, deleteBoard } from './boards';
+import {
+  boardsReducer,
+  createNewBoard,
+  deleteBoard,
+  setBoardDetails,
+  setColumns,
+  getBoardsAsync,
+  getBoardDetailsAsync,
+  getBoardsColumnsAsync,
+} from './boards';
 
-export { boardsReducer, createNewBoard, getBoardsAsync, deleteBoard };
+export {
+  boardsReducer,
+  createNewBoard,
+  deleteBoard,
+  setColumns,
+  setBoardDetails,
+  getBoardsAsync,
+  getBoardDetailsAsync,
+  getBoardsColumnsAsync,
+};
