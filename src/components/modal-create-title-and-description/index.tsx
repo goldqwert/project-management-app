@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Modal, Form, Input } from 'antd';
 
 import { ModalCreateTitleAndDescriptionProps } from './types';
+import { useTranslation } from 'react-i18next';
 
 const ModalCreateTitleAndDescription = ({
   title,
@@ -9,6 +10,7 @@ const ModalCreateTitleAndDescription = ({
   buttonType,
   onCreate,
 }: ModalCreateTitleAndDescriptionProps) => {
+  const { t } = useTranslation();
   const [isCreateLoading, setIsCreateLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -38,10 +40,10 @@ const ModalCreateTitleAndDescription = ({
         onCancel={onCancel}
         footer={[
           <Button key="cancel" onClick={onCancel}>
-            Cancel
+            {t('cancel')}
           </Button>,
           <Button key="submit" type="primary" loading={isCreateLoading} onClick={onOk}>
-            Submit
+            {t('submit')}
           </Button>,
         ]}
       >
@@ -53,11 +55,11 @@ const ModalCreateTitleAndDescription = ({
         >
           <Form.Item
             name="title"
-            label="Title"
+            label={t('title')}
             rules={[
               {
                 required: true,
-                message: 'Title is required and must be at least 3 and no more than 30 symbols',
+                message: t('titleRequiredFrom3To30'),
                 whitespace: true,
                 min: 3,
                 max: 30,
@@ -72,8 +74,7 @@ const ModalCreateTitleAndDescription = ({
             rules={[
               {
                 required: true,
-                message:
-                  'Description is required and must be at least 3 and no more than 30 symbols',
+                message: t('descriptionRequiredFrom3To30'),
                 whitespace: true,
                 min: 3,
                 max: 30,

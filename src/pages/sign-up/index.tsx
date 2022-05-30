@@ -9,11 +9,13 @@ import { getMessageFromError, openNotification } from '../../helpers';
 
 import './index.scss';
 import { useCookiesStorage } from '../../hooks';
+import { useTranslation } from 'react-i18next';
 
 const { Content } = Layout;
 const { Title } = Typography;
 
 const SignUpPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { cookies } = useCookiesStorage(['authToken']);
   const [isSignUpLoading, setIsSignUpLoading] = useState(false);
@@ -27,7 +29,7 @@ const SignUpPage = () => {
     setIsSignUpLoading(true);
     try {
       await authService.signUp(values);
-      openNotification('success', 'User successfully created! You can login!');
+      openNotification('success', t('youCanLogin'));
       navigate('/sign-in');
     } catch (error) {
       openNotification('error', getMessageFromError(error));
@@ -43,7 +45,7 @@ const SignUpPage = () => {
   return (
     <Content className="sign-up">
       <div className="sign-up__content">
-        <Title>Sign Up</Title>
+        <Title>{t('signUp')}</Title>
         <div className="sign-up__go-home">
           <ButtonGoHome />
         </div>
@@ -57,14 +59,15 @@ const SignUpPage = () => {
           onFieldsChange={onFieldsChange}
         >
           <Form.Item
-            label="Name"
+            label={t('name')}
             name="name"
-            tooltip="What is your name?"
+            tooltip={t('whatYourName')}
             rules={[
               {
                 required: true,
-                message: 'Name is required and must be no more 30 symbols',
+                message: t('nameRequiredFrom3To30'),
                 whitespace: true,
+                min: 3,
                 max: 30,
               },
             ]}
@@ -72,17 +75,17 @@ const SignUpPage = () => {
             <Input
               autoComplete="off"
               prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Name"
+              placeholder={t('name')}
             />
           </Form.Item>
 
           <Form.Item
-            label="Login"
+            label={t('login')}
             name="login"
             rules={[
               {
                 required: true,
-                message: 'Login is required and must be at least 3 and no more than 30 symbols',
+                message: t('loginRequiredFrom3To30'),
                 whitespace: true,
                 min: 3,
                 max: 30,
@@ -92,17 +95,17 @@ const SignUpPage = () => {
             <Input
               autoComplete="off"
               prefix={<LaptopOutlined className="site-form-item-icon" />}
-              placeholder="Login"
+              placeholder={t('login')}
             />
           </Form.Item>
 
           <Form.Item
-            label="Password"
+            label={t('password')}
             name="password"
             rules={[
               {
                 required: true,
-                message: 'Password is required and must be at least 8 and no more than 30 symbols',
+                message: t('passwordRequiredFrom8To30'),
                 whitespace: true,
                 min: 8,
                 max: 30,
@@ -113,7 +116,7 @@ const SignUpPage = () => {
               autoComplete="off"
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
-              placeholder="Password"
+              placeholder={t('password')}
             />
           </Form.Item>
 
@@ -125,11 +128,11 @@ const SignUpPage = () => {
               htmlType="submit"
               className="login-form-button"
             >
-              Register
+              {t('register')}
             </Button>
             <Divider />
             <div>
-              If you have an account, you can <Link to="/sign-in">login!</Link>
+              {t('ifYouHaveAccount')} <Link to="/sign-in">{t('loginAlert')}</Link>
             </div>
           </Form.Item>
         </Form>

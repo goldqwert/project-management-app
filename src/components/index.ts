@@ -8,6 +8,7 @@ import BoardColumns from './board-columns';
 import BoardTasks from './board-tasks';
 import ModalCreateTitleAndDescription from './modal-create-title-and-description';
 import BoardColumnTitle from './board-column-title';
+import SwitchLang from './switch-lang';
 
 export {
   ErrorBoundary,
@@ -20,4 +21,5 @@ export {
   BoardColumns,
   BoardTasks,
   BoardColumnTitle,
+  SwitchLang,
 };

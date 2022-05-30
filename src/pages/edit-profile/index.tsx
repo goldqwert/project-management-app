@@ -9,11 +9,13 @@ import { usersService } from '../../api';
 import './index.scss';
 import { getMessageFromError, openNotification } from '../../helpers';
 import { ModalConfirmation } from '../../components';
+import { useTranslation } from 'react-i18next';
 
 const { Content } = Layout;
 const { Title } = Typography;
 
 const EditProfile = () => {
+  const { t } = useTranslation();
   const { cookies, onLogout } = useCookiesStorage(['authToken', 'authUserId']);
   const [isEditProfileLoading, setIsEditProfileLoading] = useState(false);
   const [isEditProfileDisabled, setIsEditProfileDisabled] = useState(false);
@@ -26,7 +28,7 @@ const EditProfile = () => {
     setIsEditProfileLoading(true);
     try {
       await usersService.editUser(cookies.authUserId, cookies.authToken, values);
-      openNotification('success', 'New user data succesfully saved!');
+      openNotification('success', t('newUserDataSaved'));
       form.resetFields();
     } catch (error) {
       openNotification('error', getMessageFromError(error));
@@ -38,7 +40,7 @@ const EditProfile = () => {
   const onDeleteUser = async () => {
     try {
       await usersService.deleteUser(cookies.authUserId, cookies.authToken);
-      openNotification('success', 'User succesfully deleted');
+      openNotification('success', t('userDeleted'));
       onLogout();
     } catch (error) {
       openNotification('error', getMessageFromError(error));
@@ -55,8 +57,8 @@ const EditProfile = () => {
         <Title>Edit profile</Title>
         <div className="edit-profile__delete-account">
           <ModalConfirmation
-            title="Do you want to delete this user?"
-            description="All data of this user will be permanently deleted"
+            title={t('wantToDeleteUser')}
+            description={t('userWillDeleted')}
             onOk={onDeleteUser}
           />
         </div>
@@ -73,12 +75,13 @@ const EditProfile = () => {
           <Form.Item
             label="Name"
             name="name"
-            tooltip="What is your name?"
+            tooltip={t('whatYourName')}
             rules={[
               {
                 required: true,
-                message: 'Name is required and must be no more 30 symbols',
+                message: t('nameRequiredFrom3To30'),
                 whitespace: true,
+                min: 3,
                 max: 30,
               },
             ]}
@@ -86,17 +89,17 @@ const EditProfile = () => {
             <Input
               autoComplete="off"
               prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="New name"
+              placeholder={t('newName')}
             />
           </Form.Item>
 
           <Form.Item
-            label="Login"
+            label={t('login')}
             name="login"
             rules={[
               {
                 required: true,
-                message: 'Login is required and must be at least 3 and no more than 30 symbols',
+                message: t('loginRequiredFrom3To30'),
                 whitespace: true,
                 min: 3,
                 max: 30,
@@ -111,12 +114,12 @@ const EditProfile = () => {
           </Form.Item>
 
           <Form.Item
-            label="Password"
+            label={t('password')}
             name="password"
             rules={[
               {
                 required: true,
-                message: 'Password is required and must be at least 8 and no more than 30 symbols',
+                message: t('passwordRequiredFrom8To30'),
                 whitespace: true,
                 min: 8,
                 max: 30,
@@ -127,7 +130,7 @@ const EditProfile = () => {
               autoComplete="off"
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
-              placeholder="New password"
+              placeholder={t('newPassword')}
             />
           </Form.Item>
 
@@ -139,7 +142,7 @@ const EditProfile = () => {
               htmlType="submit"
               className="login-form-button"
             >
-              Edit
+              {t('edit')}
             </Button>
           </Form.Item>
         </Form>

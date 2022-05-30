@@ -6,6 +6,8 @@ import { ErrorBoundary } from './components';
 import { store } from './store';
 import App from './app';
 
+import './i18n';
+
 import reportWebVitals from './reportWebVitals';
 
 import 'antd/dist/antd.min.css';

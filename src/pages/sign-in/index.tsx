@@ -13,11 +13,13 @@ import { getMessageFromError, openNotification } from '../../helpers';
 import { AuthUserData } from './types';
 
 import './index.scss';
+import { useTranslation } from 'react-i18next';
 
 const { Content } = Layout;
 const { Title } = Typography;
 
 const SignInPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { cookies, setCookie } = useCookiesStorage(['authToken', 'authUserId']);
   const [isSignInLoading, setIsSignInLoading] = useState(false);
@@ -31,7 +33,7 @@ const SignInPage = () => {
     setIsSignInLoading(true);
     try {
       const { token } = await authService.signIn(values);
-      openNotification('success', 'You are successfully logged!');
+      openNotification('success', t('successLogged'));
       setCookie('authToken', token);
       setCookie('authUserId', jwt_decode<AuthUserData>(token).userId);
       navigate('/boards');
@@ -49,7 +51,7 @@ const SignInPage = () => {
   return (
     <Content className="sign-in">
       <div className="sign-in__content">
-        <Title>Sign In</Title>
+        <Title>{t('signIn')}</Title>
         <div className="sign-up__go-home">
           <ButtonGoHome />
         </div>
@@ -63,12 +65,12 @@ const SignInPage = () => {
           onFieldsChange={onFieldsChange}
         >
           <Form.Item
-            label="Login"
+            label={t('login')}
             name="login"
             rules={[
               {
                 required: true,
-                message: 'Login is required and must be at least 3 and no more than 30 symbols',
+                message: t('loginRequiredFrom3To30'),
                 whitespace: true,
                 min: 3,
                 max: 30,
@@ -78,17 +80,17 @@ const SignInPage = () => {
             <Input
               autoComplete="off"
               prefix={<LaptopOutlined className="site-form-item-icon" />}
-              placeholder="Login"
+              placeholder={t('login')}
             />
           </Form.Item>
 
           <Form.Item
-            label="Password"
+            label={t('password')}
             name="password"
             rules={[
               {
                 required: true,
-                message: 'Password is required and must be at least 8 and no more than 30 symbols',
+                message: t('passwordRequiredFrom8To30'),
                 whitespace: true,
                 min: 8,
                 max: 30,
@@ -99,7 +101,7 @@ const SignInPage = () => {
               autoComplete="off"
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
-              placeholder="Password"
+              placeholder={t('password')}
             />
           </Form.Item>
 
@@ -111,11 +113,11 @@ const SignInPage = () => {
               htmlType="submit"
               className="login-form-button"
             >
-              Log in
+              {t('logIn')}
             </Button>
             <Divider />
             <div>
-              Or <Link to="/sign-up"> register now!</Link>
+              {t('or')} <Link to="/sign-up">{t('registerNow')}</Link>
             </div>
           </Form.Item>
         </Form>

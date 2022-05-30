@@ -11,10 +11,12 @@ import './index.scss';
 import { tasksService } from '../../api';
 import ModalCreateTitleAndDescription from '../modal-create-title-and-description';
 import { getMessageFromError, openNotification } from '../../helpers';
+import { useTranslation } from 'react-i18next';
 
 const { confirm } = Modal;
 
 const BoardTasks = ({ boardId, columnId }: BoardTasksProps) => {
+  const { t } = useTranslation();
   const { cookies } = useCookiesStorage(['authToken']);
 
   const [visibleTaskModal, setVisibleTaskModal] = useState(false);
@@ -54,14 +56,13 @@ const BoardTasks = ({ boardId, columnId }: BoardTasksProps) => {
         description,
       });
       await getTasks();
-      openNotification('success', 'Task succesfully created!');
+      openNotification('success', t('taskCreated'));
     } catch (error) {
       openNotification('error', getMessageFromError(error));
     }
   };
 
   const onOpenTask = (id: string, title: string, description: string, order: number) => {
-    console.log({ id, title, description, order });
     setVisibleTaskModal(true);
     setCurrentTask(() => {
       return { id, title, description, order };
@@ -87,7 +88,7 @@ const BoardTasks = ({ boardId, columnId }: BoardTasksProps) => {
         description,
         currentTask?.order || 1
       );
-      openNotification('success', 'Task succesfully edited!');
+      openNotification('success', t('taskEdited'));
       await getTasks();
     } catch (error) {
       openNotification('error', getMessageFromError(error));
@@ -112,7 +113,7 @@ const BoardTasks = ({ boardId, columnId }: BoardTasksProps) => {
   const deleteTask = async (taskId: string) => {
     try {
       await tasksService.deleteTask(cookies.authToken, boardId, columnId, taskId);
-      openNotification('success', 'Task succesfully deleted!');
+      openNotification('success', t('taskDeleted'));
       await getTasks();
     } catch (error) {
       openNotification('error', getMessageFromError(error));
@@ -121,9 +122,9 @@ const BoardTasks = ({ boardId, columnId }: BoardTasksProps) => {
 
   const onDeleteTask = (taskId: string) => {
     confirm({
-      title: 'Are you sure you want to delete the task?',
+      title: t('deleteTask'),
       icon: <ExclamationCircleOutlined />,
-      content: 'The tasl will be deleted with all data',
+      content: t('taskWillDelete'),
       onOk: () => deleteTask(taskId),
       onCancel: () => {},
     });
@@ -132,21 +133,21 @@ const BoardTasks = ({ boardId, columnId }: BoardTasksProps) => {
   return (
     <>
       <ModalCreateTitleAndDescription
-        title="New task"
-        buttonText="Create task"
+        title={t('newTask')}
+        buttonText={t('createTask')}
         buttonType="primary"
         onCreate={(values: unknown) => onCreateTask(columnId, values)}
       />
       <Modal
-        title="Task info and editing"
+        title={t('taskInfoAndEditing')}
         visible={visibleTaskModal}
         onCancel={onCancelEditTaskModal}
         footer={[
           <Button key="cancel" onClick={onCancelEditTaskModal}>
-            Cancel
+            {t('cancel')}
           </Button>,
           <Button key="submit" type="primary" loading={isEditLoading} onClick={onOkEditTaskModal}>
-            Submit
+            {t('submit')}
           </Button>,
         ]}
       >
@@ -159,11 +160,11 @@ const BoardTasks = ({ boardId, columnId }: BoardTasksProps) => {
           >
             <Form.Item
               name="title"
-              label="New title"
+              label={t('newTitle')}
               rules={[
                 {
                   required: true,
-                  message: 'Title is required and must be at least 3 and no more than 30 symbols',
+                  message: t('titleRequiredFrom3To30'),
                   whitespace: true,
                   min: 3,
                   max: 30,
@@ -174,12 +175,11 @@ const BoardTasks = ({ boardId, columnId }: BoardTasksProps) => {
             </Form.Item>
             <Form.Item
               name="description"
-              label="New description"
+              label={t('newDescription')}
               rules={[
                 {
                   required: true,
-                  message:
-                    'Description is required and must be at least 3 and no more than 30 symbols',
+                  message: t('descriptionRequiredFrom3To30'),
                   whitespace: true,
                   min: 3,
                   max: 30,
@@ -189,18 +189,20 @@ const BoardTasks = ({ boardId, columnId }: BoardTasksProps) => {
               <Input />
             </Form.Item>
             <Button type="primary" onClick={backToViewTask}>
-              Back to view
+              {t('backToView')}
             </Button>
           </Form>
         ) : (
           <>
             <Descriptions layout="vertical">
-              <Descriptions.Item label="Title">{currentTask?.title}</Descriptions.Item>
-              <Descriptions.Item label="Description">{currentTask?.description}</Descriptions.Item>
+              <Descriptions.Item label={t('title')}>{currentTask?.title}</Descriptions.Item>
+              <Descriptions.Item label={t('description')}>
+                {currentTask?.description}
+              </Descriptions.Item>
               <Descriptions.Item label="System id">{currentTask?.id}</Descriptions.Item>
             </Descriptions>
             <Button type="primary" onClick={editTask}>
-              Edit task
+              {t('editTask')}
             </Button>
           </>
         )}
@@ -219,13 +221,13 @@ const BoardTasks = ({ boardId, columnId }: BoardTasksProps) => {
                   title={title}
                   extra={
                     <Button type="link" onClick={() => onDeleteTask(id)}>
-                      Delete
+                      {t('delete')}
                     </Button>
                   }
                 >
                   <p className="board-tasks__description">{description}</p>
                   <Button type="link" onClick={() => onOpenTask(id, title, description, order)}>
-                    View
+                    {t('view')}
                   </Button>
                 </Card>
               ))}

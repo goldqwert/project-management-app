@@ -8,9 +8,11 @@ import { columnsService } from '../../api';
 import { useAppDispatch, useCookiesStorage } from '../../hooks';
 import { getMessageFromError, openNotification } from '../../helpers';
 import { getBoardsColumnsAsync } from '../../store';
+import { useTranslation } from 'react-i18next';
 
 const BoardColumnTitle = ({ title, order, boardId, columnId }: BoardColumnTitleProps) => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const { cookies } = useCookiesStorage(['authToken']);
   const [isEditColumnTitle, setIsEditColumnTitle] = useState(false);
   const [columnTitle, setColumnTitle] = useState(title);
@@ -20,7 +22,7 @@ const BoardColumnTitle = ({ title, order, boardId, columnId }: BoardColumnTitleP
     setColumnTitleLoading(true);
     try {
       await columnsService.updateColumn(cookies.authToken, boardId, columnId, order, columnTitle);
-      openNotification('success', 'Column title succesfully updated!');
+      openNotification('success', t('columnUpdated'));
       dispatch(getBoardsColumnsAsync({ token: cookies.authToken, boardId }));
     } catch (error) {
       openNotification('error', getMessageFromError(error));
@@ -45,7 +47,7 @@ const BoardColumnTitle = ({ title, order, boardId, columnId }: BoardColumnTitleP
           <Input
             value={columnTitle}
             className="board-columns__title-edit"
-            placeholder="New title"
+            placeholder={t('newTitle')}
             onChange={onChangeTitleColumn}
             maxLength={30}
           />
@@ -56,7 +58,7 @@ const BoardColumnTitle = ({ title, order, boardId, columnId }: BoardColumnTitleP
               size="small"
               onClick={onConfirmEditColumnTitle}
             >
-              Submit
+              {t('submit')}
             </Button>
             <Button
               loading={columnTitleLoading}
@@ -64,7 +66,7 @@ const BoardColumnTitle = ({ title, order, boardId, columnId }: BoardColumnTitleP
               size="small"
               onClick={onCancelEditColumnTitle}
             >
-              Cancel
+              {t('cancel')}
             </Button>
           </div>
         </div>

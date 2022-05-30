@@ -12,11 +12,13 @@ import { columnsService } from '../../api';
 import { getMessageFromError, openNotification } from '../../helpers';
 import { getBoardsColumnsAsync } from '../../store';
 import BoardColumnTitle from '../board-column-title';
+import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
 const { confirm } = Modal;
 
 const BoardColumns = ({ boardId }: BoardColumnsProps) => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { cookies } = useCookiesStorage(['authToken']);
   const columns = useAppSelector((state) => state.boards.columns);
@@ -24,7 +26,7 @@ const BoardColumns = ({ boardId }: BoardColumnsProps) => {
   const deleteColumn = async (columnId: string) => {
     try {
       await columnsService.deleteColumn(cookies.authToken, boardId, columnId);
-      openNotification('success', 'Column succesfully deleted!');
+      openNotification('success', t('columnDeleted'));
       dispatch(getBoardsColumnsAsync({ token: cookies.authToken, boardId }));
     } catch (error) {
       openNotification('error', getMessageFromError(error));
@@ -33,9 +35,9 @@ const BoardColumns = ({ boardId }: BoardColumnsProps) => {
 
   const onDeleteColumn = (columnId: string) => {
     confirm({
-      title: 'Are you sure you want to delete the task?',
+      title: t('deleteColumn'),
       icon: <ExclamationCircleOutlined />,
-      content: 'The tasl will be deleted with all data',
+      content: t('columnWillDelete'),
       onOk: () => deleteColumn(columnId),
       onCancel: () => {},
     });
@@ -49,7 +51,7 @@ const BoardColumns = ({ boardId }: BoardColumnsProps) => {
             <div key={id} className="board-columns__item">
               <div className="board-columns__item-header">
                 <Button type="link" onClick={() => onDeleteColumn(id)}>
-                  Delete column
+                  {t('columnDelete')}
                 </Button>
                 <BoardColumnTitle title={title} order={order} boardId={boardId} columnId={id} />
               </div>

@@ -11,8 +11,10 @@ import './index.scss';
 const { Content } = Layout;
 
 import { BoardColumns, ModalCreateColumn } from '../../components';
+import { useTranslation } from 'react-i18next';
 
 const BoardDetailsPage = () => {
+  const { t } = useTranslation('');
   const { boardId = '' } = useParams();
   const dispatch = useAppDispatch();
   const { boardDetails, boardDetailsLoading, boardColumnsLoading } = useAppSelector(
@@ -39,7 +41,7 @@ const BoardDetailsPage = () => {
       <div className="board-details__content">
         <div className="board-details__btns">
           <Button type="primary">
-            <Link to="/boards">Go to boards page</Link>
+            <Link to="/boards">{t('goToBoardsPage')}</Link>
           </Button>
           <ModalCreateColumn boardId={boardId} />
         </div>
@@ -48,9 +50,11 @@ const BoardDetailsPage = () => {
 
         {!boardDetailsLoading ? (
           <>
-            <Descriptions title="Board info">
-              <Descriptions.Item label="Title">{boardDetails?.title || 'Empty'}</Descriptions.Item>
-              <Descriptions.Item label="Description">
+            <Descriptions title={t('boardInfo')}>
+              <Descriptions.Item label={t('title')}>
+                {boardDetails?.title || 'Empty'}
+              </Descriptions.Item>
+              <Descriptions.Item label={t('description')}>
                 {boardDetails?.description || 'Empty'}
               </Descriptions.Item>
             </Descriptions>

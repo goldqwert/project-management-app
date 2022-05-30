@@ -5,7 +5,7 @@ import { Footer, Header } from './components';
 import { AppRoutes } from './routes';
 
 const App = () => {
-  const [cookies] = useCookies(['authToken']);
+  const [cookies] = useCookies(['authToken', 'lang']);
 
   return (
     <Layout className="layout">

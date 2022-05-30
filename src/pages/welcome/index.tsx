@@ -1,6 +1,8 @@
 import { Layout, Carousel, List, Avatar, Descriptions, Button, Divider } from 'antd';
 import { useCookies } from 'react-cookie';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { SwitchLang } from '../../components';
 
 import { DEVELOPERS_DATA } from '../../constants';
 
@@ -9,6 +11,7 @@ import './index.scss';
 const { Content } = Layout;
 
 const WelcomePage = () => {
+  const { t } = useTranslation();
   const [cookies] = useCookies(['authToken']);
 
   return (
@@ -18,17 +21,18 @@ const WelcomePage = () => {
           <div className="welcome__auth">
             {cookies.authToken ? (
               <Button type="primary">
-                <Link to="/boards">Go to main Page</Link>
+                <Link to="/boards">{t('goToMainPage')}</Link>
               </Button>
             ) : (
-              <>
+              <div className="welcome__btns">
                 <Button type="primary">
-                  <Link to="/sign-in">Sign In</Link>
+                  <Link to="/sign-in">{t('signIn')}</Link>
                 </Button>
                 <Button type="primary">
-                  <Link to="/sign-up"> Sign Up</Link>
+                  <Link to="/sign-up">{t('signUp')}</Link>
                 </Button>
-              </>
+                <SwitchLang />
+              </div>
             )}
           </div>
 
@@ -36,23 +40,27 @@ const WelcomePage = () => {
 
           <Carousel>
             <div className="welcome__slide">
-              <h3 className="welcome__title">Project Management App</h3>
+              <h3 className="welcome__title">{t('project')}</h3>
             </div>
             <div className="welcome__slide">
-              <h3 className="welcome__title">Project Management App</h3>
+              <h3 className="welcome__title">{t('project')}</h3>
             </div>
             <div className="welcome__slide">
-              <h3 className="welcome__title">Project Management App</h3>
+              <h3 className="welcome__title">{t('project')}</h3>
             </div>
           </Carousel>
 
           <Divider />
 
-          <Descriptions title="Project and course info">
-            <Descriptions.Item label="Project">Project Management App</Descriptions.Item>
-            <Descriptions.Item label="Info">Application that helps to set tasks</Descriptions.Item>
-            <Descriptions.Item label="Stack">React, Redux</Descriptions.Item>
-            <Descriptions.Item label="Course">Rolling Scopes School React</Descriptions.Item>
+          <Descriptions title={t('projectAndCourse')}>
+            <Descriptions.Item label={t('projectLabel')}>{t('project')}</Descriptions.Item>
+            <Descriptions.Item label={t('info')}>{t('appHelps')}</Descriptions.Item>
+            <Descriptions.Item label={t('stack')}>
+              React, Redux, Typescript {t('andOtherLibs')}
+            </Descriptions.Item>
+            <Descriptions.Item label={t('projectLabel')}>
+              Rolling Scopes School React
+            </Descriptions.Item>
             <Button type="link">
               <a
                 className="footer__rsschool"
@@ -60,7 +68,7 @@ const WelcomePage = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                Link to course
+                {t('linkToCourse')}
               </a>
             </Button>
           </Descriptions>
@@ -69,10 +77,10 @@ const WelcomePage = () => {
 
           <List
             itemLayout="horizontal"
-            header={<h3>Team</h3>}
+            header={<h3>{t('team')}</h3>}
             bordered
             dataSource={DEVELOPERS_DATA}
-            renderItem={({ name, github, avatar }) => (
+            renderItem={({ name, github, avatar }, index) => (
               <List.Item>
                 <List.Item.Meta
                   avatar={<Avatar src={avatar} />}
@@ -81,7 +89,7 @@ const WelcomePage = () => {
                       {name}
                     </a>
                   }
-                  description="Front-End Developer"
+                  description={index === 0 ? 'Team Lead' : 'Developer'}
                 />
               </List.Item>
             )}

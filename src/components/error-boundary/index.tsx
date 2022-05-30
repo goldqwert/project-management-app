@@ -1,5 +1,6 @@
 import { Component, ErrorInfo } from 'react';
 import { Typography } from 'antd';
+import { withTranslation } from 'react-i18next';
 
 import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
 
@@ -28,7 +29,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (hasError) {
       return (
         <div className="boundary">
-          <Title level={3}>Sorry, something went wrong.</Title>
+          <Title level={3}>{this.props.t('sorrySomethingWrong')}</Title>
         </div>
       );
     }
@@ -37,4 +38,4 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 }
 
-export default ErrorBoundary;
+export default withTranslation()(ErrorBoundary);

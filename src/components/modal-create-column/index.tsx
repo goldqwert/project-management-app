@@ -6,8 +6,10 @@ import { columnsService } from '../../api';
 import { getMessageFromError, openNotification } from '../../helpers';
 import { getBoardsColumnsAsync } from '../../store';
 import { ModalCreateColumnProps } from './types';
+import { useTranslation } from 'react-i18next';
 
 const ModalCreateColumn = ({ boardId }: ModalCreateColumnProps) => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { cookies } = useCookiesStorage(['authToken']);
   const [isVisible, setIsVisible] = useState(false);
@@ -21,7 +23,7 @@ const ModalCreateColumn = ({ boardId }: ModalCreateColumnProps) => {
         title: values.title,
       });
       dispatch(getBoardsColumnsAsync({ token: cookies.authToken, boardId }));
-      openNotification('success', 'Column successfully created!');
+      openNotification('success', t('columnCreated'));
     } catch (error) {
       openNotification('error', getMessageFromError(error));
     } finally {
@@ -49,14 +51,14 @@ const ModalCreateColumn = ({ boardId }: ModalCreateColumnProps) => {
       </Button>
       <Modal
         visible={isVisible}
-        title="New column"
+        title={t('newColumn')}
         onCancel={onCancel}
         footer={[
           <Button key="cancel" onClick={onCancel}>
-            Cancel
+            {t('cancel')}
           </Button>,
           <Button key="submit" type="primary" loading={isCreateLoading} onClick={onOk}>
-            Submit
+            {t('submit')}
           </Button>,
         ]}
       >
@@ -68,11 +70,11 @@ const ModalCreateColumn = ({ boardId }: ModalCreateColumnProps) => {
         >
           <Form.Item
             name="title"
-            label="Title"
+            label={t('title')}
             rules={[
               {
                 required: true,
-                message: 'Title is required and must be at least 3 and no more than 30 symbols',
+                message: t('titleRequiredFrom3To30'),
                 whitespace: true,
                 min: 3,
                 max: 30,

@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Layout, Button } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 import './index.scss';
 
@@ -8,12 +9,14 @@ import ModalCreateTitleAndDescription from '../modal-create-title-and-descriptio
 import { boardsService } from '../../api';
 import { createNewBoard, getBoardsAsync } from '../../store';
 import { getMessageFromError, openNotification } from '../../helpers';
+import SwitchLang from '../switch-lang';
 
 const { Header: HeaderComponent } = Layout;
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const { cookies, onLogout } = useCookiesStorage(['authToken', 'authUserId']);
 
   const { isSticky, headerRef } = useStickyHeader();
@@ -23,7 +26,7 @@ const Header = () => {
       await boardsService.createBoard(cookies.authToken, values as IBoard);
       dispatch(createNewBoard(values));
       dispatch(getBoardsAsync(cookies.authToken));
-      openNotification('success', 'Board successfully created!');
+      openNotification('success', t('boardSuccess'));
       navigate('/boards');
     } catch (error) {
       openNotification('error', getMessageFromError(error));
@@ -39,20 +42,18 @@ const Header = () => {
     >
       <div className="header__links">
         <Button type="link">
-          <Link to="/edit-profile">Edit profile</Link>
+          <Link to="/edit-profile">{t('editProfile')}</Link>
         </Button>
         <Button type="link" onClick={logout}>
-          <Link to="/">Sign Out</Link>
+          <Link to="/">{t('signOut')}</Link>
         </Button>
         <ModalCreateTitleAndDescription
           onCreate={onCreateBoard}
-          title="New board"
-          buttonText="Create new board"
+          title={t('createNewBoard')}
+          buttonText={t('createNewBoard')}
           buttonType="link"
         />
-        <Button type="link">
-          <Link to="/">тогглер / select локализации</Link>
-        </Button>
+        <SwitchLang />
       </div>
     </HeaderComponent>
   );

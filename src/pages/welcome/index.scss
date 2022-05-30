@@ -45,4 +45,10 @@
   &__text {
     color: $white;
   }
+
+  &__btns {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 }

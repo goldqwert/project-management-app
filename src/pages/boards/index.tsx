@@ -9,11 +9,13 @@ import { useAppDispatch, useAppSelector, useAuth, useCookiesStorage } from '../.
 import './index.scss';
 import { getBoardsAsync, deleteBoard } from '../../store';
 import { getMessageFromError, openNotification } from '../../helpers';
+import { useTranslation } from 'react-i18next';
 
 const { Content } = Layout;
 const { confirm } = Modal;
 
 const BoardsPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const boards = useAppSelector((state) => state.boards.boards);
@@ -28,7 +30,7 @@ const BoardsPage = () => {
   const onOkDeleteBoard = async (boardId: string) => {
     try {
       await boardsService.deleteBoard(boardId, cookies.authToken);
-      openNotification('success', 'Board succesfully deleted!');
+      openNotification('success', t('boardDeleted'));
       dispatch(deleteBoard(boardId));
     } catch (error) {
       openNotification('error', getMessageFromError(error));
@@ -38,9 +40,9 @@ const BoardsPage = () => {
   const onDeleteBoard = (e: MouseEvent<HTMLSpanElement>, boardId: string) => {
     e.stopPropagation();
     confirm({
-      title: 'Are you sure you want to delete the board?',
+      title: t('boardDelete'),
       icon: <ExclamationCircleOutlined />,
-      content: 'The board will be deleted with all data',
+      content: t('willBoardDeleted'),
       onOk: () => onOkDeleteBoard(boardId),
       onCancel: () => {},
     });
@@ -57,7 +59,7 @@ const BoardsPage = () => {
       <div className="boards__content">
         <div className="boards__welcome">
           <Button type="primary">
-            <Link to="/">Go to welcome page</Link>
+            <Link to="/">{t('goToWelcomePage')}</Link>
           </Button>
         </div>
 
