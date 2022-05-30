@@ -14,6 +14,8 @@ import SwitchLang from '../switch-lang';
 const { Header: HeaderComponent } = Layout;
 
 const Header = () => {
+  const userToken = localStorage.getItem('authToken');
+  const userId = localStorage.getItem('authToken');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -36,26 +38,32 @@ const Header = () => {
   const logout = () => onLogout();
 
   return (
-    <HeaderComponent
-      ref={headerRef}
-      className={`header ${isSticky ? 'header__sticky' : 'header__not-sticky'}`}
-    >
-      <div className="header__links">
-        <Button type="link">
-          <Link to="/edit-profile">{t('editProfile')}</Link>
-        </Button>
-        <Button type="link" onClick={logout}>
-          <Link to="/">{t('signOut')}</Link>
-        </Button>
-        <ModalCreateTitleAndDescription
-          onCreate={onCreateBoard}
-          title={t('createNewBoard')}
-          buttonText={t('createNewBoard')}
-          buttonType="link"
-        />
-        <SwitchLang />
-      </div>
-    </HeaderComponent>
+    <>
+      {userToken && userId ? (
+        <HeaderComponent
+          ref={headerRef}
+          className={`header ${isSticky ? 'header__sticky' : 'header__not-sticky'}`}
+        >
+          <div className="header__links">
+            <Button type="link">
+              <Link to="/edit-profile">{t('editProfile')}</Link>
+            </Button>
+            <Button type="link" onClick={logout}>
+              <Link to="/">{t('signOut')}</Link>
+            </Button>
+            <ModalCreateTitleAndDescription
+              onCreate={onCreateBoard}
+              title={t('createNewBoard')}
+              buttonText={t('createNewBoard')}
+              buttonType="link"
+            />
+            <SwitchLang />
+          </div>
+        </HeaderComponent>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 

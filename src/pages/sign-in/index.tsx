@@ -34,6 +34,8 @@ const SignInPage = () => {
     try {
       const { token } = await authService.signIn(values);
       openNotification('success', t('successLogged'));
+      localStorage.setItem('authToken', token);
+      localStorage.setItem('authUserId', jwt_decode<AuthUserData>(token).userId);
       setCookie('authToken', token);
       setCookie('authUserId', jwt_decode<AuthUserData>(token).userId);
       navigate('/boards');

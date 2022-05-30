@@ -4,21 +4,23 @@ import useCookiesStorage from './use-cookies-storage';
 import { usersService } from '../api';
 
 const useAuth = () => {
-  const { cookies, onLogout } = useCookiesStorage([]);
+  const { onLogout } = useCookiesStorage([]);
 
   useEffect(() => {
     checkUserAuth();
+    window.addEventListener('storage', checkUserAuth);
   }, []);
 
   const checkUserAuth = async () => {
-    const { authUserId, authToken } = cookies;
+    const userToken = localStorage.getItem('authToken');
+    const userId = localStorage.getItem('authUserId');
 
     let id = '';
     let token = '';
 
-    if (authUserId && authToken) {
-      id = authUserId;
-      token = authToken;
+    if (userToken && userId) {
+      id = userId;
+      token = userToken;
     }
 
     try {

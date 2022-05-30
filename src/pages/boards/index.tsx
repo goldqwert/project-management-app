@@ -50,7 +50,7 @@ const BoardsPage = () => {
 
   const onOpenBoard = (boardId: string) => navigate(`/boards/${boardId}`);
 
-  if (!cookies.authToken) {
+  if (!cookies.authToken && !cookies.authUserId) {
     return <Navigate replace to="/" />;
   }
 

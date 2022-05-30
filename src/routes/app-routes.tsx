@@ -10,7 +10,6 @@ const SignInPage = lazy(() => import('../pages/sign-in'));
 const SignUpPage = lazy(() => import('../pages/sign-up'));
 const ErrorPage = lazy(() => import('../pages/error'));
 const EditProfile = lazy(() => import('../pages/edit-profile'));
-// const BoardDetailsPage = lazy(() => import('../pages/boards-details'));
 
 const AppRoutes = () => (
   <Suspense fallback={<LoadingPage />}>

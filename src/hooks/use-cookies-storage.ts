@@ -8,9 +8,8 @@ const useCookiesStorage = (deps: string[]) => {
   const onLogout = () => {
     removeCookie('authToken');
     removeCookie('authUserId');
-    setTimeout(() => {
-      navigate('/');
-    }, 500);
+    localStorage.clear();
+    navigate('/');
   };
 
   return {
