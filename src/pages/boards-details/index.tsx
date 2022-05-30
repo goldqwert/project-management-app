@@ -60,6 +60,9 @@ const BoardDetailsPage = () => {
             </Descriptions>
 
             <Divider />
+            <div className="board-details__btn">
+              <ModalCreateColumn boardId={boardId} />
+            </div>
 
             {!boardColumnsLoading ? <BoardColumns boardId={boardId} /> : <Spin />}
           </>

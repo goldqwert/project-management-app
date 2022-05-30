@@ -5,11 +5,11 @@ import { Footer, Header } from './components';
 import { AppRoutes } from './routes';
 
 const App = () => {
-  const [cookies] = useCookies(['authToken', 'lang']);
+  const [cookies] = useCookies(['authToken', 'lang', 'authUserId']);
 
   return (
     <Layout className="layout">
-      {cookies.authToken && <Header />}
+      {cookies.authToken && cookies.authUserId && <Header />}
       <AppRoutes />
       <Footer />
     </Layout>

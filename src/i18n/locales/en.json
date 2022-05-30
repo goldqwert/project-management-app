@@ -83,5 +83,7 @@
   "systemId": "System id",
   "createColumn": "Create column",
   "description": "Description",
-  "boardSuccess": "Board successfully created!"
+  "boardSuccess": "Board successfully created!",
+  "teamLead": "Team Lead",
+  "developer": "Developer"
 }

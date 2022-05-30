@@ -6,7 +6,6 @@ const useCookiesStorage = (deps: string[]) => {
   const [cookies, setCookie, removeCookie] = useCookies(deps);
 
   const onLogout = () => {
-    console.log('exit');
     removeCookie('authToken');
     removeCookie('authUserId');
     setTimeout(() => {

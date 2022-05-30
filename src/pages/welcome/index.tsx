@@ -89,7 +89,7 @@ const WelcomePage = () => {
                       {name}
                     </a>
                   }
-                  description={index === 0 ? 'Team Lead' : 'Developer'}
+                  description={index === 0 ? t('teamLead') : t('developer')}
                 />
               </List.Item>
             )}
